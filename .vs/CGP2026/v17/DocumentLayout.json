@@ -1,0 +1,90 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{31F4D055-B571-427A-AF3C-31568820255C}|_windmill2_\\_windmill2_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_windmill2_\\20221640_\uAE40\uC7AC\uBBFC.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{31F4D055-B571-427A-AF3C-31568820255C}|_windmill2_\\_windmill2_.vcxproj|solutionrelative:_windmill2_\\20221640_\uAE40\uC7AC\uBBFC.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29979CE2-397C-46EB-B1B2-267E7AE218E4}|_interpolation_\\_interpolation_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_interpolation_\\_interpolation_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{29979CE2-397C-46EB-B1B2-267E7AE218E4}|_interpolation_\\_interpolation_.vcxproj|solutionrelative:_interpolation_\\_interpolation_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F73DA758-491B-42B4-8490-B81231FA58ED}|_scaling_\\_scaling_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_scaling_\\_scaling_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F73DA758-491B-42B4-8490-B81231FA58ED}|_scaling_\\_scaling_.vcxproj|solutionrelative:_scaling_\\_scaling_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B2DDEE-AF5D-46D5-AD24-5BB7DB5E5B63}|_rotate_\\_rotate_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_rotate_\\_rotate_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{16B2DDEE-AF5D-46D5-AD24-5BB7DB5E5B63}|_rotate_\\_rotate_.vcxproj|solutionrelative:_rotate_\\_rotate_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 192,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20221640_\uAE40\uC7AC\uBBFC.cpp",
+              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_windmill2_\\20221640_\uAE40\uC7AC\uBBFC.cpp",
+              "RelativeDocumentMoniker": "_windmill2_\\20221640_\uAE40\uC7AC\uBBFC.cpp",
+              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_windmill2_\\20221640_\uAE40\uC7AC\uBBFC.cpp",
+              "RelativeToolTip": "_windmill2_\\20221640_\uAE40\uC7AC\uBBFC.cpp",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAMYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-17T08:21:23.484Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_rotate_.cpp",
+              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_rotate_\\_rotate_.cpp",
+              "RelativeDocumentMoniker": "_rotate_\\_rotate_.cpp",
+              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_rotate_\\_rotate_.cpp",
+              "RelativeToolTip": "_rotate_\\_rotate_.cpp",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAL4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-24T04:22:13.168Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_scaling_.cpp",
+              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_scaling_\\_scaling_.cpp",
+              "RelativeDocumentMoniker": "_scaling_\\_scaling_.cpp",
+              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_scaling_\\_scaling_.cpp",
+              "RelativeToolTip": "_scaling_\\_scaling_.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-24T04:14:02.721Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_interpolation_.cpp",
+              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_interpolation_\\_interpolation_.cpp",
+              "RelativeDocumentMoniker": "_interpolation_\\_interpolation_.cpp",
+              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_interpolation_\\_interpolation_.cpp",
+              "RelativeToolTip": "_interpolation_\\_interpolation_.cpp",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAABIAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-15T15:48:48.541Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
