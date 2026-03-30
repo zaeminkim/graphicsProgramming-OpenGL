@@ -27,6 +27,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_rotate_", "_rotate_\_rotat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_movingwindmill_", "_movingwindmill_\_movingwindmill_.vcxproj", "{9C89F5C0-FE9B-4304-A9E7-CA9B58312CB6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_transform_", "_transform_\_transform_.vcxproj", "{7BBE2B46-2224-4603-AB64-848A9BEB7E77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -131,6 +133,14 @@ Global
 		{9C89F5C0-FE9B-4304-A9E7-CA9B58312CB6}.Release|x64.Build.0 = Release|x64
 		{9C89F5C0-FE9B-4304-A9E7-CA9B58312CB6}.Release|x86.ActiveCfg = Release|Win32
 		{9C89F5C0-FE9B-4304-A9E7-CA9B58312CB6}.Release|x86.Build.0 = Release|Win32
+		{7BBE2B46-2224-4603-AB64-848A9BEB7E77}.Debug|x64.ActiveCfg = Debug|x64
+		{7BBE2B46-2224-4603-AB64-848A9BEB7E77}.Debug|x64.Build.0 = Debug|x64
+		{7BBE2B46-2224-4603-AB64-848A9BEB7E77}.Debug|x86.ActiveCfg = Debug|Win32
+		{7BBE2B46-2224-4603-AB64-848A9BEB7E77}.Debug|x86.Build.0 = Debug|Win32
+		{7BBE2B46-2224-4603-AB64-848A9BEB7E77}.Release|x64.ActiveCfg = Release|x64
+		{7BBE2B46-2224-4603-AB64-848A9BEB7E77}.Release|x64.Build.0 = Release|x64
+		{7BBE2B46-2224-4603-AB64-848A9BEB7E77}.Release|x86.ActiveCfg = Release|Win32
+		{7BBE2B46-2224-4603-AB64-848A9BEB7E77}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
