@@ -19,4 +19,18 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="pinwheel_fs.glsl">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="pinwheel_vs.glsl">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="stick_fs.glsl">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="stick_vs.glsl">
+      <Filter>소스 파일</Filter>
+    </None>
+  </ItemGroup>
 </Project>
