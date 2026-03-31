@@ -5,22 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\_myApp_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\_myApp_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\pinwheel_fs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\pinwheel_fs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\stick_vs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\stick_vs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\stick_fs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\stick_fs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\pinwheel_vs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\pinwheel_vs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,56 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 192,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "stick_vs.glsl",
-              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\stick_vs.glsl",
-              "RelativeDocumentMoniker": "_myApp_\\stick_vs.glsl",
-              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\stick_vs.glsl",
-              "RelativeToolTip": "_myApp_\\stick_vs.glsl",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-03-31T14:08:02.054Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "stick_fs.glsl",
-              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\stick_fs.glsl",
-              "RelativeDocumentMoniker": "_myApp_\\stick_fs.glsl",
-              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\stick_fs.glsl",
-              "RelativeToolTip": "_myApp_\\stick_fs.glsl",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-03-31T14:07:38.599Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "pinwheel_vs.glsl",
-              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\pinwheel_vs.glsl",
-              "RelativeDocumentMoniker": "_myApp_\\pinwheel_vs.glsl",
-              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\pinwheel_vs.glsl",
-              "RelativeToolTip": "_myApp_\\pinwheel_vs.glsl",
-              "ViewState": "AgIAAD4AAAAAAAAAAADwv2UAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-03-31T14:07:23.635Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "pinwheel_fs.glsl",
-              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\pinwheel_fs.glsl",
-              "RelativeDocumentMoniker": "_myApp_\\pinwheel_fs.glsl",
-              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\pinwheel_fs.glsl",
-              "RelativeToolTip": "_myApp_\\pinwheel_fs.glsl",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-03-31T14:07:11.978Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -88,7 +24,7 @@
               "RelativeDocumentMoniker": "_myApp_\\_myApp_.cpp",
               "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\_myApp_.cpp",
               "RelativeToolTip": "_myApp_\\_myApp_.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-31T14:06:11.739Z",
               "EditorCaption": ""
