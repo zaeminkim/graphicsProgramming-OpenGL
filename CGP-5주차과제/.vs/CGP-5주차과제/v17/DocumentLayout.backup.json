@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{DA04D40A-40C6-4160-9D5B-2601182AA85C}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\_myApp_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{DA04D40A-40C6-4160-9D5B-2601182AA85C}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-5\uC8FC\uCC28\uACFC\uC81C\\_myApp_\\stick_vs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{DA04D40A-40C6-4160-9D5B-2601182AA85C}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\stick_vs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DA04D40A-40C6-4160-9D5B-2601182AA85C}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-5\uC8FC\uCC28\uACFC\uC81C\\_myApp_\\pinwheel_fs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{DA04D40A-40C6-4160-9D5B-2601182AA85C}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\pinwheel_fs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DA04D40A-40C6-4160-9D5B-2601182AA85C}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-5\uC8FC\uCC28\uACFC\uC81C\\_myApp_\\stick_fs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{DA04D40A-40C6-4160-9D5B-2601182AA85C}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\stick_fs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DA04D40A-40C6-4160-9D5B-2601182AA85C}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-5\uC8FC\uCC28\uACFC\uC81C\\_myApp_\\stick_vs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{DA04D40A-40C6-4160-9D5B-2601182AA85C}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\stick_vs.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +34,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "stick_vs.glsl",
               "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-5\uC8FC\uCC28\uACFC\uC81C\\_myApp_\\stick_vs.glsl",
               "RelativeDocumentMoniker": "_myApp_\\stick_vs.glsl",
@@ -46,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "stick_fs.glsl",
               "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-5\uC8FC\uCC28\uACFC\uC81C\\_myApp_\\stick_fs.glsl",
               "RelativeDocumentMoniker": "_myApp_\\stick_fs.glsl",
@@ -58,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "pinwheel_vs.glsl",
               "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-5\uC8FC\uCC28\uACFC\uC81C\\_myApp_\\pinwheel_vs.glsl",
               "RelativeDocumentMoniker": "_myApp_\\pinwheel_vs.glsl",
@@ -70,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "pinwheel_fs.glsl",
               "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-5\uC8FC\uCC28\uACFC\uC81C\\_myApp_\\pinwheel_fs.glsl",
               "RelativeDocumentMoniker": "_myApp_\\pinwheel_fs.glsl",
@@ -88,7 +88,7 @@
               "RelativeDocumentMoniker": "_myApp_\\_myApp_.cpp",
               "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-5\uC8FC\uCC28\uACFC\uC81C\\_myApp_\\_myApp_.cpp",
               "RelativeToolTip": "_myApp_\\_myApp_.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-31T14:41:31.176Z",
               "EditorCaption": ""

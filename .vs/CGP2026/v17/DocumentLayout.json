@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\_myApp_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7952B628-F412-444C-A15A-758850A173F9}|_myApp_\\_myApp_.vcxproj|solutionrelative:_myApp_\\_myApp_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{4EA7C936-347F-46F3-8137-C3B57FF34056}|_6buffer_\\_6buffer_.vcxproj|C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_6buffer_\\_6buffer_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4EA7C936-347F-46F3-8137-C3B57FF34056}|_6buffer_\\_6buffer_.vcxproj|solutionrelative:_6buffer_\\_6buffer_.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "_myApp_.cpp",
-              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\_myApp_.cpp",
-              "RelativeDocumentMoniker": "_myApp_\\_myApp_.cpp",
-              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_myApp_\\_myApp_.cpp",
-              "RelativeToolTip": "_myApp_\\_myApp_.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAACAAAAAAAAAA==",
+              "Title": "_6buffer_.cpp",
+              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_6buffer_\\_6buffer_.cpp",
+              "RelativeDocumentMoniker": "_6buffer_\\_6buffer_.cpp",
+              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\_6buffer_\\_6buffer_.cpp",
+              "RelativeToolTip": "_6buffer_\\_6buffer_.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-31T14:06:11.739Z",
+              "WhenOpened": "2026-04-04T12:13:20.275Z",
               "EditorCaption": ""
             }
           ]
