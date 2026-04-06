@@ -30,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_myApp_.cpp",
+              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-6\uC8FC\uCC28\uC2E4\uC2B5\\_myApp_\\_myApp_.cpp",
+              "RelativeDocumentMoniker": "_myApp_\\_myApp_.cpp",
+              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-6\uC8FC\uCC28\uC2E4\uC2B5\\_myApp_\\_myApp_.cpp",
+              "RelativeToolTip": "_myApp_\\_myApp_.cpp",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAF4AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-03T03:26:42.727Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 4,
@@ -40,7 +53,7 @@
               "RelativeDocumentMoniker": "_myApp_\\stick_vs.glsl",
               "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-6\uC8FC\uCC28\uC2E4\uC2B5\\_myApp_\\stick_vs.glsl",
               "RelativeToolTip": "_myApp_\\stick_vs.glsl",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-04-03T03:26:47.002Z",
               "EditorCaption": ""
@@ -60,26 +73,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "_myApp_.cpp",
-              "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-6\uC8FC\uCC28\uC2E4\uC2B5\\_myApp_\\_myApp_.cpp",
-              "RelativeDocumentMoniker": "_myApp_\\_myApp_.cpp",
-              "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-6\uC8FC\uCC28\uC2E4\uC2B5\\_myApp_\\_myApp_.cpp",
-              "RelativeToolTip": "_myApp_\\_myApp_.cpp",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAAAH4AAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-04-03T03:26:42.727Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "pinwheel_vs.glsl",
               "DocumentMoniker": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-6\uC8FC\uCC28\uC2E4\uC2B5\\_myApp_\\pinwheel_vs.glsl",
               "RelativeDocumentMoniker": "_myApp_\\pinwheel_vs.glsl",
               "ToolTip": "C:\\Users\\jace0\\Desktop\\univ.ssu\\3-1\\\uADF8\uB798\uD53D\uC2A4\uD504\uB85C\uADF8\uB798\uBC0D\uBC0F\uC2E4\uC2B5\\CGP2026\\CGP-6\uC8FC\uCC28\uC2E4\uC2B5\\_myApp_\\pinwheel_vs.glsl",
               "RelativeToolTip": "_myApp_\\pinwheel_vs.glsl",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-04-03T03:26:45.153Z",
               "EditorCaption": ""

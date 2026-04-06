@@ -55,8 +55,8 @@ public:
 
 		// VAO 객체 생성 및 바인드
 		glGenVertexArrays(2, VAO);
-		
-		glBindVertexArray(VAO[0]); // 바람개비
+		// =============================== 바람개비 ===================================
+		glBindVertexArray(VAO[0]);
 
 		// 위치와 색상 값 배열 선언
 		GLfloat vertices[] = {
@@ -84,8 +84,10 @@ public:
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
 
-		glBindVertexArray(VAO[1]); // 막대기
+		// ================================= 막대기 ======================================
+		glBindVertexArray(VAO[1]);
 
+		// 위치 배열 선언
 		GLfloat vertices2[] = {
 			-0.03, -0.8, 0.5,
 			0.03, -0.8, 0.5,
@@ -98,9 +100,10 @@ public:
 		glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
 
-		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
 
+		// 언바인드
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindVertexArray(0);
 	}
@@ -114,27 +117,85 @@ public:
 
 	virtual void render(double currentTime)
 	{
+		// ================= 검정색 바탕화면 그리기 ============================
 		const GLfloat background[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		glClearBufferfv(GL_COLOR, 0, background);
+
+
+		// 이동 메트릭스 사용을 위한 작업
+		vmath::mat4 tm = vmath::translate(float(sin(currentTime)), 0.0f, 0.0f);
+		GLuint transMatLocation;
+		// 뷰 메트릭스 사용을 위한 작업
+		vmath::vec3 eye(0.2, 0.3, 0.8);
+		vmath::vec3 center(0.0, 0.0, 0.5);
+		vmath::vec3 up(0.0, 1.0, 0.0);
+		vmath::mat4 vm = vmath::lookat(eye, center, up);
+		GLint viewMatLocation;
+		// 프로젝션 메트릭스 사용을 위한 작업
+		float left = -0.1;
+		float right = 0.1;
+		float top = 0.07;
+		float bottom = -0.07;
+		float znear = 0.1;
+		float zfar = 10;
+		vmath::mat4 pm = vmath::frustum(left, right, bottom, top, znear, zfar);
+		GLint projMatLocation;
+
+
+		GLfloat colorChange[] = { 
+			(float)sin(currentTime) * 0.5f + 0.5f,
+			(float)cos(currentTime) * 0.5f + 0.5f,
+			0.0f,
+			1.0f 
+		};
+		glVertexAttrib4fv(2, colorChange);
+
 
 		// ================= 막대기 그리기 (프로그램2 + VAO[1]) ======================
 		// 렌더링 위해 생성한 프로그램 객체(막대기)를 사용
 		glUseProgram(rendering_program2); // 막대기용 쉐이더 선택
+
+		// 이동 메트릭스
+		transMatLocation = glGetUniformLocation(rendering_program2, "transMat");
+		glUniformMatrix4fv(transMatLocation, 1, GL_FALSE, tm);
+
+		// 뷰 메트릭스
+		viewMatLocation = glGetUniformLocation(rendering_program2, "viewMat");
+		glUniformMatrix4fv(viewMatLocation, 1, GL_FALSE, vm);
+
+		// 프로젝션 메트릭스
+		projMatLocation = glGetUniformLocation(rendering_program2, "projMat");
+		glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, pm);
+
 		glBindVertexArray(VAO[1]);        // 막대기용 데이터 상자 선택
 		glDrawArrays(GL_TRIANGLES, 0, 6); // 그리기
+
 
 
 		// ================= 바람개비 그리기 (프로그램1 + VAO[1]) =====================
 		// 렌더링 위해 생성한 프로그램 객체(바람개비)를 사용
 		glUseProgram(rendering_program);
 
+		// 회전 메트릭스
 		float angle = currentTime * 50;
 		vmath::mat4 rm = vmath::rotate(angle, 0.0f, 0.0f, 1.0f);
 		GLint rotMatLocation = glGetUniformLocation(rendering_program, "rotMat");
 		glUniformMatrix4fv(rotMatLocation, 1, GL_FALSE, rm);
 		
-		glBindVertexArray(VAO[0]);
-		glDrawArrays(GL_TRIANGLES, 0, 12);
+		// 이동 메트릭스
+		transMatLocation = glGetUniformLocation(rendering_program, "transMat");
+		glUniformMatrix4fv(transMatLocation, 1, GL_FALSE, tm);
+
+		// 뷰 메트릭스
+		viewMatLocation = glGetUniformLocation(rendering_program, "viewMat");
+		glUniformMatrix4fv(viewMatLocation, 1, GL_FALSE, vm);
+
+		// 프로젝션 메트릭스
+		projMatLocation = glGetUniformLocation(rendering_program, "projMat");
+		glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, pm);
+
+		glBindVertexArray(VAO[0]);         // 바람개비용 데이터 상자 선택
+		glDrawArrays(GL_TRIANGLES, 0, 12); // 그리기
 	}
 
 private:

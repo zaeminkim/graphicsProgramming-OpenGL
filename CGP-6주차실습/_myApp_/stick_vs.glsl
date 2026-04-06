@@ -1,9 +1,12 @@
 #version 430 core                  
 			                       
-layout (location = 2) in vec4 pos;       
+layout (location = 0) in vec4 pos; 
+
+uniform mat4 transMat;
+uniform mat4 viewMat;
+uniform mat4 projMat;
 
 void main(void)                    
 {                                  
-	gl_Position = vec4(pos.x, pos.y, pos.z, 1.0);
-	
+	gl_Position = projMat * viewMat * transMat * vec4(pos.x, pos.y, pos.z, 1.0);
 }															 
