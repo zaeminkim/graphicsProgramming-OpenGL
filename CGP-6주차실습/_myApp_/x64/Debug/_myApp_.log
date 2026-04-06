@@ -2,6 +2,19 @@
 C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\include\sb7.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
   (소스 파일 '_myApp_.cpp'을(를) 컴파일하는 중)
   
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\include\vmath.h(1022,13): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '_myApp_.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(90,4): warning C4305: '초기화 중': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(90,11): warning C4305: '초기화 중': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(91,4): warning C4305: '초기화 중': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(91,10): warning C4305: '초기화 중': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(92,4): warning C4305: '초기화 중': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(93,4): warning C4305: '초기화 중': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(93,10): warning C4305: '초기화 중': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(94,4): warning C4305: '초기화 중': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(95,4): warning C4305: '초기화 중': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\_myApp_\_myApp_.cpp(131,15): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 glfw3_d.lib(init.obj) : warning LNK4099: 'glfw3.pdb' PDB를 'glfw3_d.lib(init.obj)' 또는 'C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\x64\Debug\glfw3.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
 glfw3_d.lib(monitor.obj) : warning LNK4099: 'glfw3.pdb' PDB를 'glfw3_d.lib(monitor.obj)' 또는 'C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\x64\Debug\glfw3.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
 glfw3_d.lib(window.obj) : warning LNK4099: 'glfw3.pdb' PDB를 'glfw3_d.lib(window.obj)' 또는 'C:\Users\jace0\Desktop\univ.ssu\3-1\그래픽스프로그래밍및실습\CGP2026\CGP-6주차실습\x64\Debug\glfw3.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.

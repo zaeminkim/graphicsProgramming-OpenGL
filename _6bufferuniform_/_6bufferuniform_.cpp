@@ -22,8 +22,6 @@ public:
 
 			"out vec3 vsColor;                                             \n"
 
-			"layout (location = 2) in float time;                          \n"
-
 			"void main(void)											   \n"
 			"{															   \n"
 			"gl_Position = rotMat * vec4(pos.x, pos.y, pos.z, 1.0);        \n"
