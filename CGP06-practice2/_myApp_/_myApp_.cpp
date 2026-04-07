@@ -56,7 +56,7 @@ public:
 		// VAO 객체 생성 및 바인드
 		glGenVertexArrays(2, VAO);
 		// =============================== 바람개비 ===================================
-		glBindVertexArray(VAO[0]);
+		glBindVertexArray(VAO[0]); // VAO[0] 선택하기 //
 
 		// 위치와 색상 값 배열 선언
 		GLfloat vertices[] = {
@@ -73,15 +73,17 @@ public:
 			-0.5f,0.0f,0.5f,0.0f,1.0f,0.0f, // 11
 			0.0f,0.0f,0.5f,0.0f,0.0f,1.0f,  // 12
 		};
-
+		// VBO 객체 생성 및 바인드
 		glGenBuffers(2, VBO);
-		glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO[0]); // VBO[0] 선택하기 //
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // VBO에 vertices 복사해서 저장하기 //
 
 		// VBO를 VAO의 Vertex Attributes로 연결
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+		// VAO[0]과 VBO[0]을 연결하기, 어떻게 나누는지 알려주는 것//
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0); // 위치
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float))); // 색상
 		glEnableVertexAttribArray(1);
 
 		// ================================= 막대기 ======================================
@@ -104,13 +106,15 @@ public:
 		glEnableVertexAttribArray(0);
 
 		// 언바인드
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0); //VBO 언바인드
+		glBindVertexArray(0);             //VAO 언바인드
 	}
 
 	virtual void shutdown()
 	{
-		glDeleteVertexArrays(1, VAO);
+		glDeleteVertexArrays(2, VAO);
+		glDeleteBuffers(2, VBO);
+
 		glDeleteProgram(rendering_program);
 		glDeleteProgram(rendering_program2);
 	}
@@ -124,7 +128,7 @@ public:
 
 		// 이동 메트릭스 사용을 위한 작업
 		vmath::mat4 tm = vmath::translate(float(sin(currentTime)), 0.0f, 0.0f);
-		GLuint transMatLocation;
+		GLint transMatLocation;
 		// 뷰 메트릭스 사용을 위한 작업
 		vmath::vec3 eye(0.2, 0.3, 0.8);
 		vmath::vec3 center(0.0, 0.0, 0.5);
