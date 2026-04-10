@@ -31,6 +31,8 @@ public:
 
 	virtual void startup()
 	{
+		stbi_set_flip_vertically_on_load(true); // 텍스처 이미지의 상하 맞추기
+
 		rendering_program = compile_shaders();
 
 		// VAO 객체 생성 및 바인드
@@ -44,15 +46,15 @@ public:
 			// 정육면체 뒷면은 다 똑같은데 시계방향으로 버텍스 정의하면 됨
 
 			// 정육면체의 버텍스 8개
-			-0.25f, 0.25f, 0.25f, 1.0f, 0.0f, 0.0f,   // 인덱스 0
-			-0.25f, -0.25f, 0.25f, 0.0f, 1.0f, 0.0f,  // 인덱스 1
-			0.25f, -0.25f, 0.25f, 0.0f, 0.0f, 1.0f,   // 인덱스 2
-			0.25f, 0.25f, 0.25f, 1.0f, 1.0f, 0.0f,    // 인덱스 3
+			-0.25f, 0.25f, 0.25f,   1.0f, 0.0f, 0.0f,   0.0f, 1.0f,   // 인덱스 0
+			-0.25f, -0.25f, 0.25f,  0.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // 인덱스 1
+			0.25f, -0.25f, 0.25f,   0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // 인덱스 2
+			0.25f, 0.25f, 0.25f,    1.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // 인덱스 3
 													  
-			-0.25f, 0.25f, -0.25f, 1.0f, 0.0f, 0.0f,  // 인덱스 4
-			-0.25f, -0.25f, -0.25f, 0.0f, 1.0f, 0.0f, // 인덱스 5 
-			0.25f, -0.25f, -0.25f, 0.0f, 0.0f, 1.0f,  // 인덱스 6
-			0.25f, 0.25f, -0.25f, 1.0f, 1.0f, 0.0f,   // 인덱스 7
+			-0.25f, 0.25f, -0.25f,  1.0f, 0.0f, 0.0f,   0.0f, 1.0f,   // 인덱스 4
+			-0.25f, -0.25f, -0.25f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // 인덱스 5 
+			0.25f, -0.25f, -0.25f,  0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // 인덱스 6
+			0.25f, 0.25f, -0.25f,   1.0f, 1.0f, 0.0f,   1.0f, 1.0f    // 인덱스 7
 		};
 
 		// 버텍스 순서: 반시계 방향
@@ -87,11 +89,37 @@ public:
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 		// VBO를 VAO의 Vertex Attributes로 연결
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+		// location = 0 -> pos
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+		// location = 1 -> color
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
+		// location = 2 -> texture
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		glEnableVertexAttribArray(2);
 
+		// 텍스처 객체 생성 및 바인드
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+
+		// 이미지의 픽셀 데이터를 배열로 저장
+		int width, height, nrChannels;
+		unsigned char* data = stbi_load("wall.jpg", &width, &height, &nrChannels, 0);
+
+		// 이미지 데이터를 복사해서 텍스처 만들기
+		if (data) {
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		}
+		// 텍스처 만들고 난 후 반드시 메모리 해제
+		stbi_image_free(data);
+
+		// 텍스처 래핑, 샘플링 설정
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	}
 
 	virtual void shutdown()
@@ -127,6 +155,10 @@ public:
 		vmath::mat4 pm = vmath::perspective(50.0f, (float)(info.windowWidth) / (float)(info.windowHeight), 0.1f, 1000.0f);
 		GLint projMatLocation;
 
+		glUniform1i(glGetUniformLocation(rendering_program, "texIndex"), 0);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture);
+
 
 		// ================= 정육면체 그리기 (rendering_program + VAO) =====================
 		// 렌더링 위해 생성한 프로그램 객체를 사용
@@ -157,6 +189,7 @@ public:
 private:
 	GLuint rendering_program;
 	GLuint VAO, VBO, EBO;
+	GLuint texture;
 };
 
 DECLARE_MAIN(my_application)
