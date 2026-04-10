@@ -73,11 +73,9 @@ public:
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
 
-
 		// 텍스처 좌표 속성 (location = 2)
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 		glEnableVertexAttribArray(2);
-
 
 		// 텍스처 객체 생성 및 바인딩 //
 		glGenTextures(1, &texture);
@@ -124,14 +122,14 @@ public:
 		glUniform1i(glGetUniformLocation(rendering_program, "texture1"), 0); // (texture1의 location, 0)
 																			 // texture1의 인덱스를 0으로 지정한다
 		glActiveTexture(GL_TEXTURE0);                                        // 텍스처 샘플러의 위치 0 활성화
-		glBindTexture(GL_TEXTURE_2D, texture);
+		glBindTexture(GL_TEXTURE_2D, texture); // 텍스처 객체 texture에 바인드
 
 		// ================= 오브젝트 그리기 (프로그램 + VAO) =====================
 		// 렌더링 위해 생성한 프로그램 객체를 사용
 		glUseProgram(rendering_program);
 		// VAO 바인딩
 		glBindVertexArray(VAO);
-		// EBO를 활용해 사각형을 그린다. (삼각형 2개)
+		// EBO에서 제공하는 인덱스를 활용해 사각형을 그린다. (삼각형 2개)
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
