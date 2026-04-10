@@ -129,10 +129,23 @@
     <ClCompile Include="_myApp_.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="pinwheel_fs.glsl" />
-    <None Include="pinwheel_vs.glsl" />
-    <None Include="stick_fs.glsl" />
-    <None Include="stick_vs.glsl" />
+    <None Include="square_fs.glsl" />
+    <None Include="square_vs.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="container.jpg" />
+    <Image Include="container2.png" />
+    <Image Include="container2_specular.png" />
+    <Image Include="side1.jpg" />
+    <Image Include="side2.jpg" />
+    <Image Include="side3.jpg" />
+    <Image Include="side4.jpg" />
+    <Image Include="side5.jpg" />
+    <Image Include="side6.jpg" />
+    <Image Include="wall.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

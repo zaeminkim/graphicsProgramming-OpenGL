@@ -20,17 +20,48 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="pinwheel_vs.glsl">
+    <None Include="square_vs.glsl">
       <Filter>소스 파일</Filter>
     </None>
-    <None Include="pinwheel_fs.glsl">
+    <None Include="square_fs.glsl">
       <Filter>소스 파일</Filter>
     </None>
-    <None Include="stick_vs.glsl">
-      <Filter>소스 파일</Filter>
-    </None>
-    <None Include="stick_fs.glsl">
-      <Filter>소스 파일</Filter>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stb_image.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="container.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="container2.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="container2_specular.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side1.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side2.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side3.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side4.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side5.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side6.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="wall.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -3,6 +3,8 @@
 #include <sb7.h>
 #include <vmath.h>
 #include <shader.h>
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 class my_application : public sb7::application
 {
@@ -13,8 +15,8 @@ public:
 		GLuint fragment_shader;
 		GLuint program;
 
-		vertex_shader = sb7::shader::load("pinwheel_vs.glsl", GL_VERTEX_SHADER);
-		fragment_shader = sb7::shader::load("pinwheel_fs.glsl", GL_FRAGMENT_SHADER);
+		vertex_shader = sb7::shader::load("square_vs.glsl", GL_VERTEX_SHADER);
+		fragment_shader = sb7::shader::load("square_fs.glsl", GL_FRAGMENT_SHADER);
 
 
 		program = glCreateProgram();
@@ -27,89 +29,60 @@ public:
 
 		return program;
 	}
-
-	GLuint compile_shaders2(void) {
-		GLuint vertex_shader;
-		GLuint fragment_shader;
-		GLuint program;
-
-		vertex_shader = sb7::shader::load("stick_vs.glsl", GL_VERTEX_SHADER);
-		fragment_shader = sb7::shader::load("stick_fs.glsl", GL_FRAGMENT_SHADER);
-
-		program = glCreateProgram();
-		glAttachShader(program, vertex_shader);
-		glAttachShader(program, fragment_shader);
-		glLinkProgram(program);
-
-		glDeleteShader(vertex_shader);
-		glDeleteShader(fragment_shader);
-
-		return program;
-	}
-
 
 	virtual void startup()
 	{
 		rendering_program = compile_shaders();
-		rendering_program2 = compile_shaders2();
 
 		// VAO 객체 생성 및 바인드
-		glGenVertexArrays(2, VAO);
+		glGenVertexArrays(1, &VAO);
+		glBindVertexArray(VAO);
 
-		glBindVertexArray(VAO[0]); // 바람개비
-
-		// 위치와 색상 값 배열 선언
+		// 사각형 네 점의 위치와 색상 값 배열 선언
 		GLfloat vertices[] = {
-			-0.5f,0.5f,0.5f,1.0f,0.0f,0.0f, // 1
-			0.0f,0.5f,0.5f,0.0f,1.0f,0.0f,  // 2
-			0.0f,0.0f,0.5f,0.0f,0.0f,1.0f,  // 3
-			0.5f,0.5f,0.5f,1.0f,0.0f,0.0f,  // 4
-			0.5f,0.0f,0.5f,0.0f,1.0f,0.0f,  // 5
-			0.0f,0.0f,0.5f,0.0f,0.0f,1.0f,  // 6
-			0.5f,-0.5f,0.5f,1.0f,0.0f,0.0f, // 7
-			0.0f,-0.5f,0.5f,0.0f,1.0f,0.0f, // 8
-			0.0f,0.0f,0.5f,0.0f,0.0f,1.0f,  // 9
-			-0.5f,-0.5f,0.5f,1.0f,0.0f,0.0f,// 10
-			-0.5f,0.0f,0.5f,0.0f,1.0f,0.0f, // 11
-			0.0f,0.0f,0.5f,0.0f,0.0f,1.0f,  // 12
+			0.25f, 0.25f, 0.5f, 1.0f, 0.0f, 0.0f,
+			-0.25f, 0.25f, 0.5f, 0.0f, 1.0f, 0.0f,
+			-0.25f, -0.25f, 0.5f, 0.0f, 0.0f, 1.0f,
+			0.25f, -0.25f, 0.5f, 1.0f, 1.0f, 0.0f
+		};
+		// 삼각형으로 그릴 인덱스값 배열 정의 (인덱스의 순서)
+		GLuint indices[] = {
+			0, 1, 2,    // 첫번째 삼각형
+			0, 2, 3     // 두번째 삼각형
 		};
 
-		glGenBuffers(2, VBO);
-		glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
+		// VBO를 생성해서 vertices 값들을 복사 //
+		// VBO는 정점의 위치나 색상 같은 실제 데이터를 배열로 담는다
+		glGenBuffers(1, &VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		// VBO를 VAO의 Vertex Attributes로 연결
+		// EBO를 생성해서 indices 값들을 복사 //
+		// EBO는 VBO에 있는 데이터의 인덱스 순서를 배열로 담는다
+		glGenBuffers(1, &EBO);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+		// VBO를 VAO의 Vertex Attributes로 연결 //
+		// glVertexAttribPointer()는 바인딩된 VBO가 있어야만 사용 가능
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
 
-		glBindVertexArray(VAO[1]); // 막대기
 
-		GLfloat vertices2[] = {
-			-0.03, -0.8, 0.5,
-			0.03, -0.8, 0.5,
-			-0.03,  0.0, 0.5,
-			0.03, -0.8, 0.5,
-			0.03,  0.0, 0.5,
-			-0.03,  0.0, 0.5,
-		};
 
-		glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
-
-		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(2);
-
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindVertexArray(0);
+		// 언바인드 안해도 됨
+		/*glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);*/
 	}
 
 	virtual void shutdown()
 	{
-		glDeleteVertexArrays(1, VAO);
+		glDeleteBuffers(1, &VBO);
+		glDeleteBuffers(1, &EBO);
+		glDeleteVertexArrays(1, &VAO);
 		glDeleteProgram(rendering_program);
-		glDeleteProgram(rendering_program2);
 	}
 
 	virtual void render(double currentTime)
@@ -117,30 +90,19 @@ public:
 		const GLfloat background[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		glClearBufferfv(GL_COLOR, 0, background);
 
-		// ================= 막대기 그리기 (프로그램2 + VAO[1]) ======================
-		// 렌더링 위해 생성한 프로그램 객체(막대기)를 사용
-		glUseProgram(rendering_program2); // 막대기용 쉐이더 선택
-		glBindVertexArray(VAO[1]);        // 막대기용 데이터 상자 선택
-		glDrawArrays(GL_TRIANGLES, 0, 6); // 그리기
-
-
-		// ================= 바람개비 그리기 (프로그램1 + VAO[1]) =====================
-		// 렌더링 위해 생성한 프로그램 객체(바람개비)를 사용
+		// ================= 오브젝트 그리기 (프로그램 + VAO) =====================
+		// 렌더링 위해 생성한 프로그램 객체를 사용
 		glUseProgram(rendering_program);
-
-		float angle = currentTime * 50;
-		vmath::mat4 rm = vmath::rotate(angle, 0.0f, 0.0f, 1.0f);
-		GLint rotMatLocation = glGetUniformLocation(rendering_program, "rotMat");
-		glUniformMatrix4fv(rotMatLocation, 1, GL_FALSE, rm);
-
-		glBindVertexArray(VAO[0]);
-		glDrawArrays(GL_TRIANGLES, 0, 12);
+		// VAO 바인딩
+		glBindVertexArray(VAO);
+		// EBO를 활용해 사각형을 그린다. (삼각형 2개)
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 
 private:
 	GLuint rendering_program;
-	GLuint rendering_program2;
-	GLuint VAO[2], VBO[2];
+	GLuint VAO, VBO;
+	GLuint EBO;
 };
 
 DECLARE_MAIN(my_application)
