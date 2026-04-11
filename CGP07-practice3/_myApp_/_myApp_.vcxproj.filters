@@ -32,6 +32,12 @@
     <None Include="pyramid_fs.glsl">
       <Filter>소스 파일</Filter>
     </None>
+    <None Include="floor_vs.glsl">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="floor_fs.glsl">
+      <Filter>소스 파일</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">

@@ -131,6 +131,8 @@
   <ItemGroup>
     <None Include="box_fs.glsl" />
     <None Include="box_vs.glsl" />
+    <None Include="floor_fs.glsl" />
+    <None Include="floor_vs.glsl" />
     <None Include="pyramid_fs.glsl" />
     <None Include="pyramid_vs.glsl" />
   </ItemGroup>
