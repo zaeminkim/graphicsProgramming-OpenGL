@@ -1,5 +1,5 @@
 #version 430 core                 
-  
+
 layout (location = 0) in vec3 pos;   
 // layout (location = 1) in vec3 color; // 필요없음, 텍스처 사용하기 때문
 layout (location = 2) in vec2 texCoord; // 텍스처 좌표
@@ -10,7 +10,6 @@ uniform mat4 transMat;
 uniform mat4 viewMat;
 uniform mat4 projMat;
 
-// out vec3 vsColor;
 out vec2 vsTexCoord;
 
 void main(void)                    
@@ -20,4 +19,4 @@ void main(void)
 
 	// vsColor = color;
 	vsTexCoord = texCoord;
-}															
+}								
