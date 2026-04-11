@@ -109,7 +109,7 @@ public:
 			 0.25f, -0.25f, -0.25f,   0.0f, 0.0f, 1.0f,   1.0f, 0.0f, //22 bottom-right
 			 0.25f, -0.25f,  0.25f,   1.0f, 1.0f, 0.0f,   1.0f, 1.0f  //23 top-right
 		};
-		// 인덱스: 면당 2삼각형 (총 36)
+		// 인덱스: 면당 2삼각형 (총 36개)
 		GLuint indices[] = {
 			// Front
 			0,1,3, 3,1,2,
@@ -128,10 +128,6 @@ public:
 		// ====================================== VBO [0] 바인드 ============================================ //
 		glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		// ====================================== EBO [0] 바인드 ============================================ //
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
 		// VBO를 VAO의 Vertex Attributes로 연결
 		// location = 0 -> pos
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
@@ -139,17 +135,17 @@ public:
 		// location = 1 -> color
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
-		// location = 2 -> texture
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-		glEnableVertexAttribArray(2);
+
+		// ====================================== EBO [0] 바인드 ============================================ //
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 		// ====================================== texture [0] 바인드 ============================================ //
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
-
+	
 		// 이미지의 픽셀 데이터를 배열로 저장
 		int width, height, nrChannels;
-		unsigned char* data = stbi_load("wall.jpg", &width, &height, &nrChannels, 0);
-
+		unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
 		// 이미지 데이터를 복사해서 텍스처 만들기
 		if (data) {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -157,13 +153,15 @@ public:
 		}
 		// 텍스처 만들고 난 후 반드시 메모리 해제
 		stbi_image_free(data);
-
 		// 텍스처 래핑, 샘플링 설정
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+		// location = 2 -> texture
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		glEnableVertexAttribArray(2);
 
 
 
@@ -173,27 +171,27 @@ public:
 
 		GLfloat vertices2[] = {
 			// 옆 면 (삼각형)
-			0.0f, 0.45f, 0.0f, 0.5f, 1.0f,   // 0
-			-0.25f,0.25f,0.25f, 0.0f, 0.0f,  // 1
-			0.25f,0.25f,0.25f, 1.0f, 0.0f,   // 2
+			0.0f, 0.45f, 0.0f,   0.5f, 1.0f,   // 0
+			-0.25f,0.25f,0.25f,  0.0f, 0.0f,   // 1
+			0.25f,0.25f,0.25f,   1.0f, 0.0f,   // 2
+							     
+			0.0f,0.45f,0.0f,     0.5f, 1.0f,   // 3 
+			0.25f,0.25f,0.25f,   0.0f, 0.0f,   // 4
+			0.25f,0.25f,-0.25f,  1.0f, 0.0f,   // 5
 
-			0.0f,0.45f,0.0f, 0.5f, 1.0f,     // 3 
-			0.25f,0.25f,0.25f, 0.0f, 0.0f,   // 4
-			0.25f,0.25f,-0.25f, 1.0f, 0.0f,  // 5
+			0.0f,0.45f,0.0f,     0.5f, 1.0f,   // 6
+			0.25f,0.25f,-0.25f,  0.0f,0.0f,    // 7
+			-0.25f,0.25f,-0.25f, 1.0f,0.0f,    // 8
 
-			0.0f,0.45f,0.0f, 0.5f, 1.0f,     // 6
-			0.25f,0.25f,-0.25f,0.0f,0.0f,    // 7
-			-0.25f,0.25f,-0.25f,1.0f,0.0f,   // 8
-
-			0.0f,0.45f,0.0f, 0.5f, 1.0f,      // 9
-			-0.25f,0.25f,-0.25f,0.0f,0.0f,  // 10
-			-0.25f,0.25f,0.25f,1.0f,0.0f, // 11
+			0.0f,0.45f,0.0f,     0.5f, 1.0f,   // 9
+			-0.25f,0.25f,-0.25f, 0.0f,0.0f,   // 10
+			-0.25f,0.25f,0.25f,  1.0f,0.0f,   // 11
 
 			// 밑 면 (사각형)
-			-0.25f,0.25f,0.25f, 0.0f,0.0f,  // 12
-			0.25f,0.25f,0.25f, 1.0f,0.0f,   // 13
-			0.25f,0.25f,-0.25f, 1.0f,1.0f,  // 14
-			-0.25f,0.25f,-0.25f, 0.0f,1.0f  // 15
+			-0.25f,0.25f,0.25f,  0.0f,0.0f,   // 12
+			0.25f,0.25f,0.25f,   1.0f,0.0f,   // 13
+			0.25f,0.25f,-0.25f,  1.0f,1.0f,   // 14
+			-0.25f,0.25f,-0.25f, 0.0f,1.0f    // 15
 		};
 		
 		GLuint indices2[] = {
@@ -211,16 +209,13 @@ public:
 		// ====================================== VBO [1] 바인드 ============================================ //
 		glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
-		// ====================================== EBO [1] 바인드 ============================================ //
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[1]);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices2), indices2, GL_STATIC_DRAW);
-
 		// location = 0 -> pos
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
-		// location = 2 -> texture
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-		glEnableVertexAttribArray(2);
+
+		// ====================================== EBO [1] 바인드 ============================================ //
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[1]);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices2), indices2, GL_STATIC_DRAW);
 
 		// ====================================== texture [1] 바인드 ============================================ //
 		glBindTexture(GL_TEXTURE_2D, texture[1]);
@@ -228,21 +223,22 @@ public:
 		// 이미지의 픽셀 데이터를 배열로 저장
 		int width2, height2, nrChannels2;
 		unsigned char* data2 = stbi_load("container2.png", &width2, &height2, &nrChannels2, 0);
-
 		// 이미지 데이터를 복사해서 텍스처 만들기
 		if (data2) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width2, height2, 0, GL_RGBA, GL_UNSIGNED_BYTE, data2);
-			// png는 GL_RGBA
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width2, height2, 0, GL_RGBA, GL_UNSIGNED_BYTE, data2); // png는 GL_RGBA
 			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
 		}
 		// 텍스처 만들고 난 후 반드시 메모리 해제
 		stbi_image_free(data2);
-
 		// 텍스처 래핑, 샘플링 설정
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		// location = 2 -> texture
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+		glEnableVertexAttribArray(2);
 	}
 
 	virtual void shutdown()
@@ -259,17 +255,18 @@ public:
 	{
 		const GLfloat background[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		glClearBufferfv(GL_COLOR, 0, background);
+		// 여러 객체 사이의 가림처리를 위해서
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
-		glClear(GL_DEPTH_BUFFER_BIT); // 깊이 버퍼 비우기 
-		glEnable(GL_DEPTH_TEST);      // 앞뒤 가리기 활성화 
 
 		// 회전 메트릭스를 위한 작업
 		float angle = currentTime * 100;
-		vmath::mat4 rm = vmath::rotate(angle, 0.0f, 1.0f, 0.0f);
+		vmath::mat4 rm = vmath::rotate(angle, 0.0f, 1.0f, 0.0f); // 공전 운동
 		GLint rotMatLocation;
 
 		// 이동 메트릭스를 위한 작업
-		vmath::mat4 tm = vmath::translate((float)sin(currentTime), 0.0f, float(cos(currentTime)));
+		vmath::mat4 tm = vmath::translate((float)sin(currentTime), 0.0f, float(cos(currentTime))); // 자전 운동
 		GLint transMatLocation;
 
 		// 뷰 메트릭스를 위한 작업
@@ -310,37 +307,35 @@ public:
 		projMatLocation = glGetUniformLocation(rendering_program1, "projMat");
 		glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, pm);
 
-		// VAO 사용
+		// VAO 바인드
 		glBindVertexArray(VAO[0]);
 		// EBO를 활용해 정육면체 그리기
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)(0 * sizeof(GLuint)));
+		// 만약에 면마다 다른 텍스처를 적용하려면 인덱스0 ~ 인덱스5, 인덱스6 ~ 인덱스 11, ... 끊어서 DrawElements() 하면 됨
 
 
 		// ======================== 사각뿔 그리기 (rendering_program2 + VAO[1](VBO[1], EBO[1]) ============================
 		glUseProgram(rendering_program2);
 
 		// 그리기 전에 사용하고자 하는 텍스처 바인드하기
-		glUniform1i(glGetUniformLocation(rendering_program2, "texIndex"), 1);
-		glActiveTexture(GL_TEXTURE1);
+		glUniform1i(glGetUniformLocation(rendering_program2, "texIndex"), 0);
+		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture[1]);
 		
-		rotMatLocation = glGetUniformLocation(rendering_program2, "rotMat");
-		glUniformMatrix4fv(rotMatLocation, 1, GL_FALSE, rm);
+		//rotMatLocation = glGetUniformLocation(rendering_program2, "rotMat");
+		//transMatLocation = glGetUniformLocation(rendering_program2, "transMat");
+		//viewMatLocation = glGetUniformLocation(rendering_program2, "viewMat");
+		//projMatLocation = glGetUniformLocation(rendering_program2, "projMat");
 
-		transMatLocation = glGetUniformLocation(rendering_program2, "transMat");
-		glUniformMatrix4fv(transMatLocation, 1, GL_FALSE, tm);
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "rotMat"), 1, GL_FALSE, rm);
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "transMat"), 1, GL_FALSE, tm);
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "viewMat"), 1, GL_FALSE, vm);
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "projMat"), 1, GL_FALSE, pm);
 
-		viewMatLocation = glGetUniformLocation(rendering_program2, "viewMat");
-		glUniformMatrix4fv(viewMatLocation, 1, GL_FALSE, vm);
-
-		projMatLocation = glGetUniformLocation(rendering_program2, "projMat");
-		glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, pm);
-
-		// VAO 사용
+		// VAO 바인드
 		glBindVertexArray(VAO[1]);
 		// EBO를 활용해 사각뿔 그리기
 		glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_INT, 0);
-
 	}
 
 private:
