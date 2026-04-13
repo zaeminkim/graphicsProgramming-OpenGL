@@ -42,12 +42,10 @@ public:
 		glGenTextures(6, texture);
 
 
-
-
-
+		// ======================================== VAO 바인드 ====================================== //
 		glBindVertexArray(VAO); // 정육면체
 
-		// 위치와 색상 값 배열 선언
+		// 버텍스와 텍스처 버텍스 배열 선언
 		GLfloat vertices[] = {
 			// 버텍스 4개 = 정육면체 한 면
 			// 정육면체 뒷면은 다 똑같은데 시계방향으로 버텍스 정의하면 됨
@@ -106,7 +104,7 @@ public:
 			21, 22, 23
 		};
 
-		// VBO 바인드
+		// ========================================= VBO 바인드 ====================================== //
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 		// VBO를 VAO의 Vertex Attributes로 연결
@@ -117,12 +115,11 @@ public:
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
 
-		// EBO 바인드
+		// ========================================= EBO 바인드 ========================================== //
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-
-		// texture[0] 바인드
+		// ====================================== texture[0] 바인드 ===================================== //
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
 
 		// 이미지의 픽셀 데이터를 배열로 저장
@@ -144,7 +141,7 @@ public:
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-		// texture[1] 바인드
+		// ====================================== texture[1] 바인드 ===================================== //
 		glBindTexture(GL_TEXTURE_2D, texture[1]);
 
 		// 이미지의 픽셀 데이터를 배열로 저장
@@ -166,7 +163,7 @@ public:
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-		// 텍스처 바인드
+		// ====================================== texture[2] 바인드 ===================================== //
 		glBindTexture(GL_TEXTURE_2D, texture[2]);
 
 		// 이미지의 픽셀 데이터를 배열로 저장
@@ -188,7 +185,7 @@ public:
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-		// texture[3] 바인드
+		// ====================================== texture[3] 바인드 ===================================== //
 		glBindTexture(GL_TEXTURE_2D, texture[3]);
 
 		// 이미지의 픽셀 데이터를 배열로 저장
@@ -210,7 +207,7 @@ public:
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-		// texture[4] 바인드
+		// ====================================== texture[4] 바인드 ===================================== //
 		glBindTexture(GL_TEXTURE_2D, texture[4]);
 
 		// 이미지의 픽셀 데이터를 배열로 저장
@@ -232,7 +229,7 @@ public:
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-		// texture[5] 바인드
+		// ====================================== texture[5] 바인드 ===================================== //
 		glBindTexture(GL_TEXTURE_2D, texture[5]);
 
 		// 이미지의 픽셀 데이터를 배열로 저장
@@ -282,9 +279,9 @@ public:
 		GLint transMatLocation;
 
 		// 뷰 메트릭스를 위한 작업
-		vmath::vec3 eye(1.6, 1.3, 2.0);    // eye=카메라 위치, 위에서 내려다보기 -> y축 조절, 비스듬히 보기 -> x, z축 조절
-		vmath::vec3 center(0.0, 0.0, 0.0); // center=바라보는 초점
-		vmath::vec3 up(0.0, 1.0, 0.0);     // up=카메라의 정수리, 보통 (0,1,0)으로 고정
+		vmath::vec3 eye(1.6, 1.3, 2.0);                  // eye=카메라 위치, 위에서 내려다보기 -> y축 조절, 비스듬히 보기 -> x, z축 조절
+		vmath::vec3 center(0.0, 0.0, 0.0);               // center=바라보는 초점
+		vmath::vec3 up(0.0, 1.0, 0.0);                   // up=카메라의 정수리, 보통 (0,1,0)으로 고정
 		vmath::mat4 vm = vmath::lookat(eye, center, up);
 		GLint viewMatLocation;
 
@@ -293,7 +290,9 @@ public:
 		vmath::mat4 pm = vmath::perspective(50.0f, (float)(info.windowWidth) / (float)(info.windowHeight), 0.1f, 1000.0f);
 		GLint projMatLocation;
 
-		// ================= 정육면체 그리기 (rendering_program + VAO + texture[6]) =====================
+		// ================= 정육면체 그리기 (rendering_program + VAO + texture[6]) ===================== //
+		// 
+		// =================================== 프로그램 객체 사용 =============================================//
 		glUseProgram(rendering_program);
 
 		// 회전 메트릭스
@@ -313,35 +312,35 @@ public:
 		glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, pm);
 
 
-		// VAO 바인드
+		// ========================================= VAO 바인드 ============================================= //
 		glBindVertexArray(VAO);
 
-		// texture 바인드
+		// ======================================== texture 바인드 ======================================= //
 		glUniform1i(glGetUniformLocation(rendering_program, "texIndex"), 0);
 		glActiveTexture(GL_TEXTURE0);
 
-		// 면1 (indices 0..5)
+		// 면1 near (indices 0..5) "숫자 1"
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(0 * sizeof(GLuint)));
 
-		// 면2 (indices 6..11)
-		glBindTexture(GL_TEXTURE_2D, texture[1]);
+		// 면2 far (indices 6..11) "숫자 6"
+		glBindTexture(GL_TEXTURE_2D, texture[5]);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(6 * sizeof(GLuint)));
 
-		// 면3 (indices 12..17)
-		glBindTexture(GL_TEXTURE_2D, texture[2]);
+		// 면3 right (indices 12..17) "숫자 2"
+		glBindTexture(GL_TEXTURE_2D, texture[1]);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(12 * sizeof(GLuint)));
 
-		// 면4 (indices 18..23)
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		// 면4 left (indices 18..23) "숫자 5"
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(18 * sizeof(GLuint)));
 
-		// 면5 (indices 24..29)
-		glBindTexture(GL_TEXTURE_2D, texture[4]);
+		// 면5 top (indices 24..29) "숫자 3"
+		glBindTexture(GL_TEXTURE_2D, texture[2]);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(24 * sizeof(GLuint)));
 
-		// 면6 (indices 30..35)
-		glBindTexture(GL_TEXTURE_2D, texture[5]);
+		// 면6 bottom (indices 30..35) "숫자 4"
+		glBindTexture(GL_TEXTURE_2D, texture[3]);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(30 * sizeof(GLuint)));
 	}
 
