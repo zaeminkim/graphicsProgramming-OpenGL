@@ -336,9 +336,9 @@ public:
 		GLint transMatLocation;
 
 		// 뷰 메트릭스를 위한 작업
-		vmath::vec3 eye((float)sin(currentTime*0.4), 1.3, (float)cos(currentTime*0.4));	   // eye=카메라 위치, 위에서 내려다보기 -> y축 조절, 비스듬히 보기 -> x, z축 조절
-		vmath::vec3 center(0.0, 0.0, 0.0);										           // center=바라보는 초점
-		vmath::vec3 up(0.0, 1.0, 0.0);											           // up=카메라의 정수리, 보통 (0,1,0)으로 고정
+		vmath::vec3 eye((float)sin(currentTime*0.4), 1.3, (float)cos(currentTime*0.4) + 0.5);	   // eye=카메라 위치, 위에서 내려다보기 -> y축 조절, 비스듬히 보기 -> x, z축 조절
+		vmath::vec3 center(0.0, 0.0, 0.5);										                   // center=바라보는 초점
+		vmath::vec3 up(0.0, 1.0, 0.0);											                   // up=카메라의 정수리, 보통 (0,1,0)으로 고정
 		vmath::mat4 vm = vmath::lookat(eye, center, up);
 		GLint viewMatLocation;
 
