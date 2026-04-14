@@ -39,7 +39,7 @@ public:
 		glGenVertexArrays(1, &VAO);
 		glGenBuffers(1, &VBO);
 		glGenBuffers(1, &EBO);
-		glGenTextures(6, texture);
+		glGenTextures(7, texture);
 
 
 		// ======================================== VAO 바인드 ====================================== //
@@ -118,6 +118,7 @@ public:
 		// ========================================= EBO 바인드 ========================================== //
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
 
 		// ====================================== texture[0] 바인드 ===================================== //
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -249,6 +250,28 @@ public:
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+		// ====================================== texture[6] 바인드 ===================================== //
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
+
+		// 이미지의 픽셀 데이터를 배열로 저장
+		int width, height, nrChannels;
+		unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+
+		// 이미지 데이터를 복사해서 텍스처 만들기
+		if (data) {
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		}
+		// 텍스처 만들고 난 후 반드시 메모리 해제
+		stbi_image_free(data);
+
+		// 텍스처 래핑, 샘플링 설정
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	}
 
 	virtual void shutdown()
@@ -256,7 +279,7 @@ public:
 		glDeleteVertexArrays(1, &VAO);
 		glDeleteBuffers(1, &VBO);
 		glDeleteBuffers(1, &EBO);
-		glDeleteTextures(6, texture);
+		glDeleteTextures(7, texture);
 		glDeleteProgram(rendering_program);
 	}
 
@@ -267,11 +290,10 @@ public:
 		glEnable(GL_CULL_FACE);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_CULL_FACE);
 
 		// 회전 메트릭스를 위한 작업
 		float angle = currentTime * 100;
-		vmath::mat4 rm = vmath::rotate(angle, 0.0f, 0.0f, 1.0f);
+		vmath::mat4 rm = vmath::rotate(angle, 0.0f, 1.0f, 0.0f);
 		GLint rotMatLocation;
 
 		// 이동 메트릭스를 위한 작업
@@ -316,8 +338,8 @@ public:
 		glBindVertexArray(VAO);
 
 		// ======================================== texture 바인드 ======================================= //
-		glUniform1i(glGetUniformLocation(rendering_program, "texIndex"), 0);
-		glActiveTexture(GL_TEXTURE0);
+		glUniform1i(glGetUniformLocation(rendering_program, "texIndex1"), 0);
+		glActiveTexture(GL_TEXTURE0); // 0번 위치 활성화 후 각 텍스처들 바인드
 
 		// 면1 near (indices 0..5) "숫자 1"
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -342,12 +364,20 @@ public:
 		// 면6 bottom (indices 30..35) "숫자 4"
 		glBindTexture(GL_TEXTURE_2D, texture[3]);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(30 * sizeof(GLuint)));
+
+
+
+		glUniform1i(glGetUniformLocation(rendering_program, "texIndex2"), 1);
+		glActiveTexture(GL_TEXTURE1);
+
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
 	}
 
 private:
 	GLuint rendering_program;
 	GLuint VAO, VBO, EBO;
-	GLuint texture[6];
+	GLuint texture[7];
 };
 
 DECLARE_MAIN(my_application)
