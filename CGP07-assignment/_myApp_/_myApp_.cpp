@@ -120,158 +120,189 @@ public:
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 
-		// ====================================== texture[0] 바인드 ===================================== //
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
 
-		// 이미지의 픽셀 데이터를 배열로 저장
-		int width0, height0, nrChannels0;
-		unsigned char* data0 = stbi_load("side1.jpg", &width0, &height0, &nrChannels0, 0);
+		// ========================= texture 배열을 이용해 바인드 하는 방법 ===================================== //
+		const char* texData[] = { "side1.jpg","side2.jpg","side3.jpg","side4.jpg","side5.jpg","side6.jpg","container.jpg" };
 
-		// 이미지 데이터를 복사해서 텍스처 만들기
-		if (data0) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width0, height0, 0, GL_RGB, GL_UNSIGNED_BYTE, data0);
-			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		// 배열의 크기를 계산하여 반복 횟수를 구하기. (여기서는 7)
+		int texNum = sizeof(texData) / sizeof(texData[0]);
+
+		for (int i = 0; i < texNum; i++) {
+			glBindTexture(GL_TEXTURE_2D, texture[i]);
+
+			int width, height, nrChannels;
+			unsigned char* data = stbi_load(texData[i], &width, &height, &nrChannels, 0);
+
+			if (data) {
+				// jpg와 png가 섞여 있는 경우
+				GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
+
+				glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+				glGenerateMipmap(GL_TEXTURE_2D);
+			}
+			stbi_image_free(data);
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		}
-		// 텍스처 만들고 난 후 반드시 메모리 해제
-		stbi_image_free(data0);
-
-		// 텍스처 래핑, 샘플링 설정
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		// =========================================================================================================== //
 
 
-		// ====================================== texture[1] 바인드 ===================================== //
-		glBindTexture(GL_TEXTURE_2D, texture[1]);
 
-		// 이미지의 픽셀 데이터를 배열로 저장
-		int width1, height1, nrChannels1;
-		unsigned char* data1 = stbi_load("side2.jpg", &width1, &height1, &nrChannels1, 0);
+		//// ====================================== texture[0] 바인드 ===================================== //
+		//glBindTexture(GL_TEXTURE_2D, texture[0]);
 
-		// 이미지 데이터를 복사해서 텍스처 만들기
-		if (data1) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width1, height1, 0, GL_RGB, GL_UNSIGNED_BYTE, data1);
-			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		}
-		// 텍스처 만들고 난 후 반드시 메모리 해제
-		stbi_image_free(data1);
+		//// 이미지의 픽셀 데이터를 배열로 저장
+		//int width0, height0, nrChannels0;
+		//unsigned char* data0 = stbi_load("side1.jpg", &width0, &height0, &nrChannels0, 0);
 
-		// 텍스처 래핑, 샘플링 설정
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		//// 이미지 데이터를 복사해서 텍스처 만들기
+		//if (data0) {
+		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width0, height0, 0, GL_RGB, GL_UNSIGNED_BYTE, data0);
+		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		//}
+		//// 텍스처 만들고 난 후 반드시 메모리 해제
+		//stbi_image_free(data0);
 
-
-		// ====================================== texture[2] 바인드 ===================================== //
-		glBindTexture(GL_TEXTURE_2D, texture[2]);
-
-		// 이미지의 픽셀 데이터를 배열로 저장
-		int width2, height2, nrChannels2;
-		unsigned char* data2 = stbi_load("side3.jpg", &width2, &height2, &nrChannels2, 0);
-
-		// 이미지 데이터를 복사해서 텍스처 만들기
-		if (data2) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width2, height2, 0, GL_RGB, GL_UNSIGNED_BYTE, data2);
-			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		}
-		// 텍스처 만들고 난 후 반드시 메모리 해제
-		stbi_image_free(data2);
-
-		// 텍스처 래핑, 샘플링 설정
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		//// 텍스처 래핑, 샘플링 설정
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-		// ====================================== texture[3] 바인드 ===================================== //
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		//// ====================================== texture[1] 바인드 ===================================== //
+		//glBindTexture(GL_TEXTURE_2D, texture[1]);
 
-		// 이미지의 픽셀 데이터를 배열로 저장
-		int width3, height3, nrChannels3;
-		unsigned char* data3 = stbi_load("side4.jpg", &width3, &height3, &nrChannels3, 0);
+		//// 이미지의 픽셀 데이터를 배열로 저장
+		//int width1, height1, nrChannels1;
+		//unsigned char* data1 = stbi_load("side2.jpg", &width1, &height1, &nrChannels1, 0);
 
-		// 이미지 데이터를 복사해서 텍스처 만들기
-		if (data3) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width3, height3, 0, GL_RGB, GL_UNSIGNED_BYTE, data3);
-			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		}
-		// 텍스처 만들고 난 후 반드시 메모리 해제
-		stbi_image_free(data3);
+		//// 이미지 데이터를 복사해서 텍스처 만들기
+		//if (data1) {
+		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width1, height1, 0, GL_RGB, GL_UNSIGNED_BYTE, data1);
+		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		//}
+		//// 텍스처 만들고 난 후 반드시 메모리 해제
+		//stbi_image_free(data1);
 
-		// 텍스처 래핑, 샘플링 설정
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-		// ====================================== texture[4] 바인드 ===================================== //
-		glBindTexture(GL_TEXTURE_2D, texture[4]);
-
-		// 이미지의 픽셀 데이터를 배열로 저장
-		int width4, height4, nrChannels4;
-		unsigned char* data4 = stbi_load("side5.jpg", &width4, &height4, &nrChannels4, 0);
-
-		// 이미지 데이터를 복사해서 텍스처 만들기
-		if (data4) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width4, height4, 0, GL_RGB, GL_UNSIGNED_BYTE, data4);
-			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		}
-		// 텍스처 만들고 난 후 반드시 메모리 해제
-		stbi_image_free(data4);
-
-		// 텍스처 래핑, 샘플링 설정
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		//// 텍스처 래핑, 샘플링 설정
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-		// ====================================== texture[5] 바인드 ===================================== //
-		glBindTexture(GL_TEXTURE_2D, texture[5]);
+		//// ====================================== texture[2] 바인드 ===================================== //
+		//glBindTexture(GL_TEXTURE_2D, texture[2]);
 
-		// 이미지의 픽셀 데이터를 배열로 저장
-		int width5, height5, nrChannels5;
-		unsigned char* data5 = stbi_load("side6.jpg", &width5, &height5, &nrChannels5, 0);
+		//// 이미지의 픽셀 데이터를 배열로 저장
+		//int width2, height2, nrChannels2;
+		//unsigned char* data2 = stbi_load("side3.jpg", &width2, &height2, &nrChannels2, 0);
 
-		// 이미지 데이터를 복사해서 텍스처 만들기
-		if (data5) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width5, height5, 0, GL_RGB, GL_UNSIGNED_BYTE, data5);
-			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		}
-		// 텍스처 만들고 난 후 반드시 메모리 해제
-		stbi_image_free(data5);
+		//// 이미지 데이터를 복사해서 텍스처 만들기
+		//if (data2) {
+		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width2, height2, 0, GL_RGB, GL_UNSIGNED_BYTE, data2);
+		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		//}
+		//// 텍스처 만들고 난 후 반드시 메모리 해제
+		//stbi_image_free(data2);
 
-		// 텍스처 래핑, 샘플링 설정
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		//// 텍스처 래핑, 샘플링 설정
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-		// ====================================== texture[6] 바인드 ===================================== //
-		glBindTexture(GL_TEXTURE_2D, texture[6]);
+		//// ====================================== texture[3] 바인드 ===================================== //
+		//glBindTexture(GL_TEXTURE_2D, texture[3]);
 
-		// 이미지의 픽셀 데이터를 배열로 저장
-		int width, height, nrChannels;
-		unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+		//// 이미지의 픽셀 데이터를 배열로 저장
+		//int width3, height3, nrChannels3;
+		//unsigned char* data3 = stbi_load("side4.jpg", &width3, &height3, &nrChannels3, 0);
 
-		// 이미지 데이터를 복사해서 텍스처 만들기
-		if (data) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		}
-		// 텍스처 만들고 난 후 반드시 메모리 해제
-		stbi_image_free(data);
+		//// 이미지 데이터를 복사해서 텍스처 만들기
+		//if (data3) {
+		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width3, height3, 0, GL_RGB, GL_UNSIGNED_BYTE, data3);
+		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		//}
+		//// 텍스처 만들고 난 후 반드시 메모리 해제
+		//stbi_image_free(data3);
 
-		// 텍스처 래핑, 샘플링 설정
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		//// 텍스처 래핑, 샘플링 설정
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+		//// ====================================== texture[4] 바인드 ===================================== //
+		//glBindTexture(GL_TEXTURE_2D, texture[4]);
+
+		//// 이미지의 픽셀 데이터를 배열로 저장
+		//int width4, height4, nrChannels4;
+		//unsigned char* data4 = stbi_load("side5.jpg", &width4, &height4, &nrChannels4, 0);
+
+		//// 이미지 데이터를 복사해서 텍스처 만들기
+		//if (data4) {
+		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width4, height4, 0, GL_RGB, GL_UNSIGNED_BYTE, data4);
+		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		//}
+		//// 텍스처 만들고 난 후 반드시 메모리 해제
+		//stbi_image_free(data4);
+
+		//// 텍스처 래핑, 샘플링 설정
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+		//// ====================================== texture[5] 바인드 ===================================== //
+		//glBindTexture(GL_TEXTURE_2D, texture[5]);
+
+		//// 이미지의 픽셀 데이터를 배열로 저장
+		//int width5, height5, nrChannels5;
+		//unsigned char* data5 = stbi_load("side6.jpg", &width5, &height5, &nrChannels5, 0);
+
+		//// 이미지 데이터를 복사해서 텍스처 만들기
+		//if (data5) {
+		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width5, height5, 0, GL_RGB, GL_UNSIGNED_BYTE, data5);
+		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		//}
+		//// 텍스처 만들고 난 후 반드시 메모리 해제
+		//stbi_image_free(data5);
+
+		//// 텍스처 래핑, 샘플링 설정
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+		//// ====================================== texture[6] 바인드 ===================================== //
+		//glBindTexture(GL_TEXTURE_2D, texture[6]);
+
+		//// 이미지의 픽셀 데이터를 배열로 저장
+		//int width, height, nrChannels;
+		//unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+
+		//// 이미지 데이터를 복사해서 텍스처 만들기
+		//if (data) {
+		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
+		//}
+		//// 텍스처 만들고 난 후 반드시 메모리 해제
+		//stbi_image_free(data);
+
+		//// 텍스처 래핑, 샘플링 설정
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	}
 
 	virtual void shutdown()
@@ -337,41 +368,64 @@ public:
 		// ========================================= VAO 바인드 ============================================= //
 		glBindVertexArray(VAO);
 
-		// ======================================== texture 바인드 ======================================= //
-		glUniform1i(glGetUniformLocation(rendering_program, "texIndex1"), 0);
-		glActiveTexture(GL_TEXTURE0); // 0번 위치 활성화 후 각 텍스처들 바인드
+		//// ======================================== texture 바인드 ======================================= //
+		//glUniform1i(glGetUniformLocation(rendering_program, "texIndex1"), 0);
+		//glActiveTexture(GL_TEXTURE0); // 0번 위치 활성화 후 각 텍스처들 바인드
 
-		// 면1 near (indices 0..5) "숫자 1"
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(0 * sizeof(GLuint)));
+		//// 면1 near (indices 0..5) "숫자 1"
+		//glBindTexture(GL_TEXTURE_2D, texture[0]);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(0 * sizeof(GLuint)));
 
-		// 면2 far (indices 6..11) "숫자 6"
-		glBindTexture(GL_TEXTURE_2D, texture[5]);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(6 * sizeof(GLuint)));
+		//// 면2 far (indices 6..11) "숫자 6"
+		//glBindTexture(GL_TEXTURE_2D, texture[5]);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(6 * sizeof(GLuint)));
 
-		// 면3 right (indices 12..17) "숫자 2"
-		glBindTexture(GL_TEXTURE_2D, texture[1]);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(12 * sizeof(GLuint)));
+		//// 면3 right (indices 12..17) "숫자 2"
+		//glBindTexture(GL_TEXTURE_2D, texture[1]);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(12 * sizeof(GLuint)));
 
-		// 면4 left (indices 18..23) "숫자 5"
-		glBindTexture(GL_TEXTURE_2D, texture[4]);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(18 * sizeof(GLuint)));
+		//// 면4 left (indices 18..23) "숫자 5"
+		//glBindTexture(GL_TEXTURE_2D, texture[4]);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(18 * sizeof(GLuint)));
 
-		// 면5 top (indices 24..29) "숫자 3"
-		glBindTexture(GL_TEXTURE_2D, texture[2]);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(24 * sizeof(GLuint)));
+		//// 면5 top (indices 24..29) "숫자 3"
+		//glBindTexture(GL_TEXTURE_2D, texture[2]);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(24 * sizeof(GLuint)));
 
-		// 면6 bottom (indices 30..35) "숫자 4"
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(30 * sizeof(GLuint)));
+		//// 면6 bottom (indices 30..35) "숫자 4"
+		//glBindTexture(GL_TEXTURE_2D, texture[3]);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(30 * sizeof(GLuint)));
+
+		//// ======================================== texture 바인드 ======================================= //
+		//glUniform1i(glGetUniformLocation(rendering_program, "texIndex2"), 1);
+		//glActiveTexture(GL_TEXTURE1);
+
+		//glBindTexture(GL_TEXTURE_2D, texture[6]);
+		//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
 
 
-
+		// ================================ texture 바인드 코드 수정 ========================================= //
+		// 1. 공통으로 쓰이는 배경 텍스처(나무 상자)를 먼저
 		glUniform1i(glGetUniformLocation(rendering_program, "texIndex2"), 1);
 		glActiveTexture(GL_TEXTURE1);
-
 		glBindTexture(GL_TEXTURE_2D, texture[6]);
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
+
+		// 2. 각 면(0~5번)에 대응하는 숫자 텍스처의 인덱스를 배열로 매핑
+		// 순서: near(0), far(5), right(1), left(4), top(2), bottom(3)
+		int faceTextures[] = { 0, 5, 1, 4, 2, 3 };
+
+		// 3. 0번 슬롯(숫자 텍스처)을 활성화
+		glUniform1i(glGetUniformLocation(rendering_program, "texIndex1"), 0);
+		glActiveTexture(GL_TEXTURE0);
+
+		// 4. 반복문으로 텍스처를 바꿔가며 6개의 면을 그리기
+		for (int i = 0; i < 6; i++) {
+			// 배열에서 이번 면에 맞는 텍스처 번호를 꺼내어 바인딩
+			glBindTexture(GL_TEXTURE_2D, texture[faceTextures[i]]);
+
+			// i가 0일 땐 offset 0, i가 1일 땐 offset 6, i가 2일 땐 offset 12...
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(i * 6 * sizeof(GLuint)));
+		}
 	}
 
 private:
