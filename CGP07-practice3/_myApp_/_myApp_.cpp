@@ -396,17 +396,20 @@ public:
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
 
-		// 이동, 스케일링 메트릭스를 위한 작업
-		vmath::mat4 tm1 = vmath::translate(0.4f, 0.0f, -1.0f);
+		// 이동, 회전, 스케일링 메트릭스를 위한 작업
+		vmath::mat4 tm1 = vmath::translate(1.2f, 0.0f, -0.2f);
+		vmath::mat4 rm1 = vmath::rotate(30.0f, 0.0f, 1.0f, 0.0f);
 		vmath::mat4 sm1 = vmath::scale(1.0f, 1.0f, 1.0f);
+
 		// 뷰 메트릭스를 위한 작업
 		// eye=카메라 위치, 위에서 내려다보기 -> y축 조절, 비스듬히 보기 -> x, z축 조절
 		// center=바라보는 초점
 		// up=카메라의 정수리, 보통 (0,1,0)으로 고정
-		vmath::vec3 eye((float)sin(currentTime * 0.5) * 2, 1.0, (float)cos(currentTime * 0.5) * 2 + 0.5);
-		vmath::vec3 center(0.0, 0.0, 0.5);
+		vmath::vec3 eye((float)sin(currentTime * 0.5) * 2, 1.0, (float)cos(currentTime * 0.5) * 2 + 0.1);
+		vmath::vec3 center(0.0, 0.0, 0.1);
 		vmath::vec3 up(0.0, 1.0, 0.0);
 		vmath::mat4 vm = vmath::lookat(eye, center, up);
+
 		// 프로젝션 메트릭스를 위한 작업
 		// 세로 화각=50도, 화면 비=가로/세로, Near, Far
 		vmath::mat4 pm = vmath::perspective(50.0f, (float)(info.windowWidth) / (float)(info.windowHeight), 0.1f, 1000.0f);
@@ -420,6 +423,8 @@ public:
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program1, "viewMat"), 1, GL_FALSE, vm);
 		// 프로젝션 메트릭스
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program1, "projMat"), 1, GL_FALSE, pm);
+		// 물줄기 애니메이션을 위해 currentTime을 쉐이더로 전달
+		glUniform1f(glGetUniformLocation(rendering_program1, "time"), (float)currentTime);
 
 		// ================================================ VAO 바인드 ================================================= //
 		glBindVertexArray(VAO[0]);
@@ -440,11 +445,11 @@ public:
 			// 배열에서 이번 면에 맞는 텍스처 번호를 꺼내어 바인딩
 			glBindTexture(GL_TEXTURE_2D, texture_bg[texBgIndex[i]]);
 
-			if (i == 0) {
-				glUniform1i(glGetUniformLocation(rendering_program1, "texBottom"), 1);
+			if (i == 0) { // bottom일 때
+				glUniform1i(glGetUniformLocation(rendering_program1, "texBottom"), 1); // texBottom에 1 대입
 			}
-			else {
-				glUniform1i(glGetUniformLocation(rendering_program1, "texBottom"), 0);
+			else { // bottom이 아닐 때
+				glUniform1i(glGetUniformLocation(rendering_program1, "texBottom"), 0); // texBottom에 0 대입
 			}
 			// i가 0일 땐 offset 0, i가 1일 땐 offset 6, i가 2일 땐 offset 12...
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(i * 6 * sizeof(GLuint)));
@@ -458,6 +463,8 @@ public:
 
 		// 이동 메트릭스
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "transMat"), 1, GL_FALSE, tm1);
+		// 회전 메트릭스
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "rotMat"), 1, GL_FALSE, rm1);
 		// 스케일 메트릭스
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "scaleMat"), 1, GL_FALSE, sm1);
 		// 뷰 메트릭스
@@ -496,6 +503,7 @@ public:
 		glBindTexture(GL_TEXTURE_2D, texture_roof);
 
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "transMat"), 1, GL_FALSE, tm1);
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "rotMat"), 1, GL_FALSE, rm1);
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "scaleMat"), 1, GL_FALSE, sm1);
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "viewMat"), 1, GL_FALSE, vm);
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "projMat"), 1, GL_FALSE, pm);
