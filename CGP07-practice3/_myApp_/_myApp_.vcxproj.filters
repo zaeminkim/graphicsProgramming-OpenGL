@@ -38,6 +38,7 @@
     <None Include="floor_fs.glsl">
       <Filter>소스 파일</Filter>
     </None>
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -45,34 +46,22 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="container.jpg">
+    <Image Include="sand.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="container2.png">
+    <Image Include="sand_front.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="container2_specular.png">
+    <Image Include="sand_roof.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="side1.jpg">
+    <Image Include="sand_wall.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="side2.jpg">
+    <Image Include="sky.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="side3.jpg">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="side4.jpg">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="side5.jpg">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="side6.jpg">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="wall.jpg">
+    <Image Include="water.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

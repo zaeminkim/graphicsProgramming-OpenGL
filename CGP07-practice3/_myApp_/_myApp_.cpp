@@ -166,7 +166,7 @@ public:
 	
 		// 이미지의 픽셀 데이터를 배열로 저장
 		int width, height, nrChannels;
-		unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+		unsigned char* data = stbi_load("sand_wall.jpg", &width, &height, &nrChannels, 0);
 		// 이미지 데이터를 복사해서 텍스처 만들기
 		if (data) {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -243,10 +243,10 @@ public:
 
 		// 이미지의 픽셀 데이터를 배열로 저장
 		int width2, height2, nrChannels2;
-		unsigned char* data2 = stbi_load("container2.png", &width2, &height2, &nrChannels2, 0);
+		unsigned char* data2 = stbi_load("sand_roof.jpg", &width2, &height2, &nrChannels2, 0);
 		// 이미지 데이터를 복사해서 텍스처 만들기
 		if (data2) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width2, height2, 0, GL_RGBA, GL_UNSIGNED_BYTE, data2); // png는 GL_RGBA
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width2, height2, 0, GL_RGB, GL_UNSIGNED_BYTE, data2); // png는 GL_RGBA
 			glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
 		}
 		// 텍스처 만들고 난 후 반드시 메모리 해제
@@ -296,7 +296,7 @@ public:
 
 		glBindTexture(GL_TEXTURE_2D, texture[2]);
 		int width3, height3, nrChannels3;
-		unsigned char* data3 = stbi_load("wall.jpg", &width3, &height3, &nrChannels3, 0);
+		unsigned char* data3 = stbi_load("sand.jpg", &width3, &height3, &nrChannels3, 0);
 		if (data3) {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data3);
 			glGenerateMipmap(GL_TEXTURE_2D);

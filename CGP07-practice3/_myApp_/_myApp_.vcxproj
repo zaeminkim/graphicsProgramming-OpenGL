@@ -135,21 +135,18 @@
     <None Include="floor_vs.glsl" />
     <None Include="pyramid_fs.glsl" />
     <None Include="pyramid_vs.glsl" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="container.jpg" />
-    <Image Include="container2.png" />
-    <Image Include="container2_specular.png" />
-    <Image Include="side1.jpg" />
-    <Image Include="side2.jpg" />
-    <Image Include="side3.jpg" />
-    <Image Include="side4.jpg" />
-    <Image Include="side5.jpg" />
-    <Image Include="side6.jpg" />
-    <Image Include="wall.jpg" />
+    <Image Include="sand.jpg" />
+    <Image Include="sand_front.jpg" />
+    <Image Include="sand_roof.jpg" />
+    <Image Include="sand_wall.jpg" />
+    <Image Include="sky.jpg" />
+    <Image Include="water.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
