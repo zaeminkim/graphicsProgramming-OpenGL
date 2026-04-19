@@ -396,7 +396,7 @@ public:
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
 
-		// 이동 메트릭스를 위한 작업
+		// 이동, 스케일링 메트릭스를 위한 작업
 		vmath::mat4 tm1 = vmath::translate(0.4f, 0.0f, -1.0f);
 		vmath::mat4 sm1 = vmath::scale(1.0f, 1.0f, 1.0f);
 		// 뷰 메트릭스를 위한 작업
@@ -425,14 +425,27 @@ public:
 		glBindVertexArray(VAO[0]);
 
 		// ============================================== 텍스처 바인드 ================================================ //
+		// 0번, 1번 슬롯 세팅
 		glUniform1i(glGetUniformLocation(rendering_program1, "texIndex"), 0);
-		glActiveTexture(GL_TEXTURE0);
+		glUniform1i(glGetUniformLocation(rendering_program1, "texIndex2"), 1);
+
+		glActiveTexture(GL_TEXTURE1); // 1번 위치 활성화
+		glBindTexture(GL_TEXTURE_2D, texture_bg[2]);
 
 		// bottom(0), near(1), far(1), right(1), left(1), top(1)
 		int texBgIndex[] = { 0,1,1,1,1,1 };
 		for (int i = 0; i < 6; i++) {
+			// 0번 위치 활성화
+			glActiveTexture(GL_TEXTURE0);
 			// 배열에서 이번 면에 맞는 텍스처 번호를 꺼내어 바인딩
 			glBindTexture(GL_TEXTURE_2D, texture_bg[texBgIndex[i]]);
+
+			if (i == 0) {
+				glUniform1i(glGetUniformLocation(rendering_program1, "texBottom"), 1);
+			}
+			else {
+				glUniform1i(glGetUniformLocation(rendering_program1, "texBottom"), 0);
+			}
 			// i가 0일 땐 offset 0, i가 1일 땐 offset 6, i가 2일 땐 offset 12...
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(i * 6 * sizeof(GLuint)));
 		}
@@ -483,6 +496,7 @@ public:
 		glBindTexture(GL_TEXTURE_2D, texture_roof);
 
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "transMat"), 1, GL_FALSE, tm1);
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "scaleMat"), 1, GL_FALSE, sm1);
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "viewMat"), 1, GL_FALSE, vm);
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "projMat"), 1, GL_FALSE, pm);
 
