@@ -99,40 +99,40 @@ public:
 		// 버텍스 + 텍스처 좌표
 		GLfloat vertices1[] = {
 			// bottom (0~3)
-			-2.0f, -0.25f, 2.0f,  0.0f, 0.0f,
-			2.0f, -0.25f, 2.0f,	  1.0f, 0.0f,
-			2.0f, -0.25f, -2.0f,  1.0f, 1.0f,
-			-2.0f, -0.25f, -2.0f, 0.0f, 1.0f,
-								  
-			// top (4~7)		  
-			-2.0f, 3.75f, 2.0f,	  0.0f, 0.0f,
-			2.0f, 3.75f, 2.0f,	  1.0f, 0.0f,
-			2.0f, 3.75f, -2.0f,	  1.0f, 1.0f,
-			-2.0f, 3.75f, -2.0f,  0.0f, 1.0f,
-								 
-			// near (8~11)		 
-			-2.0f, -0.25f, 2.0f,  0.0f, 0.0f,
-			2.0f, -0.25f, 2.0f,	  1.0f, 0.0f,
-			2.0f, 3.75f, 2.0f,	  1.0f, 1.0f,
-			-2.0f, 3.75f, 2.0f,	  0.0f, 1.0f,
-
-			// far (12~15)		  
-			-2.0f, -0.25f, -2.0f, 0.0f, 0.0f,
-			2.0f, -0.25f, -2.0f,  1.0f, 0.0f,
-			2.0f, 3.75f, -2.0f,	  1.0f, 1.0f,
-			-2.0f, 3.75f, -2.0f,  0.0f, 1.0f,
-								  
-			// right (16~19)	  
-			2.0f, -0.25f, 2.0f,	  0.0f, 0.0f,
-			2.0f, -0.25f, -2.0f,  1.0f, 0.0f,
-			2.0f, 3.75f, -2.0f,	  1.0f, 1.0f,
-			2.0f, 3.75f, 2.0f,	  0.0f, 1.0f,
-								  
-			// left (20~23)		  
-			-2.0f, -0.25f, 2.0f,  0.0f, 0.0f,
-			-2.0f, -0.25f, -2.0f, 1.0f, 0.0f,
-			-2.0f, 3.75f, -2.0f,  1.0f, 1.0f,
-			-2.0f, 3.75f, 2.0f,	  0.0f, 1.0f
+			-2.0f, -0.25f, 2.0f,  0.0f, 0.0f,     0.6f, 0.9f, 1.5f,
+			2.0f, -0.25f, 2.0f,	  1.0f, 0.0f,     0.6f, 0.9f, 1.5f,
+			2.0f, -0.25f, -2.0f,  1.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+			-2.0f, -0.25f, -2.0f, 0.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+											     
+			// top (4~7)		  			     
+			-2.0f, 3.75f, 2.0f,	  0.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			2.0f, 3.75f, 2.0f,	  1.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			2.0f, 3.75f, -2.0f,	  1.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+			-2.0f, 3.75f, -2.0f,  0.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+											     
+			// near (8~11)		 			     
+			-2.0f, -0.25f, 2.0f,  1.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			2.0f, -0.25f, 2.0f,	  0.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			2.0f, 3.75f, 2.0f,	  0.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+			-2.0f, 3.75f, 2.0f,	  1.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+											     
+			// far (12~15)		  			     
+			-2.0f, -0.25f, -2.0f, 0.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			2.0f, -0.25f, -2.0f,  1.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			2.0f, 3.75f, -2.0f,	  1.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+			-2.0f, 3.75f, -2.0f,  0.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+											     
+			// right (16~19)	  			     
+			2.0f, -0.25f, 2.0f,	  1.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			2.0f, -0.25f, -2.0f,  0.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			2.0f, 3.75f, -2.0f,	  0.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+			2.0f, 3.75f, 2.0f,	  1.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+											     
+			// left (20~23)		  			     
+			-2.0f, -0.25f, 2.0f,  0.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			-2.0f, -0.25f, -2.0f, 1.0f, 0.0f,     1.0f, 1.0f, 1.0f,
+			-2.0f, 3.75f, -2.0f,  1.0f, 1.0f,     1.0f, 1.0f, 1.0f,
+			-2.0f, 3.75f, 2.0f,	  0.0f, 1.0f,     1.0f, 1.0f, 1.0f
 		};
 		GLuint indices1[] = {
 			// bottom
@@ -160,8 +160,12 @@ public:
 
 		// VBO를 VAO의 Vertex Attributes로 연결
 		// location = 0 -> pos
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
+		// location = 2 -> color
+		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
+		glEnableVertexAttribArray(2);
+
 
 		// ====================================== EBO [0] 바인드 ============================================ //
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
@@ -193,7 +197,7 @@ public:
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		}
 		// location = 1 -> texture
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
 
 
@@ -331,7 +335,7 @@ public:
 			3,4,5,
 			6,7,8,
 			9,10,11,
-			12,13,14,  15,12,14  // (또는 12,13,14, 15,14,12) — 밑면 삼각형 두 개
+			12,13,14,  15,12,14
 		};
 
 		// ====================================== VBO [2] 바인드 ============================================ //
@@ -393,25 +397,29 @@ public:
 		glEnable(GL_CULL_FACE);
 
 		// 이동 메트릭스를 위한 작업
-		vmath::mat4 tm = vmath::translate(0.4f, 0.0f, -1.0f);
-		GLint transMatLocation;
-
+		vmath::mat4 tm1 = vmath::translate(0.4f, 0.0f, -1.0f);
+		vmath::mat4 sm1 = vmath::scale(1.0f, 1.0f, 1.0f);
 		// 뷰 메트릭스를 위한 작업
-		vmath::vec3 eye((float)sin(currentTime*0.5) * 2, 1.0, (float)cos(currentTime*0.5) * 2 + 0.5); // eye=카메라 위치, 위에서 내려다보기 -> y축 조절, 비스듬히 보기 -> x, z축 조절
-		vmath::vec3 center(0.0, 0.0, 0.5);										              // center=바라보는 초점
-		vmath::vec3 up(0.0, 1.0, 0.0);											              // up=카메라의 정수리, 보통 (0,1,0)으로 고정
+		// eye=카메라 위치, 위에서 내려다보기 -> y축 조절, 비스듬히 보기 -> x, z축 조절
+		// center=바라보는 초점
+		// up=카메라의 정수리, 보통 (0,1,0)으로 고정
+		vmath::vec3 eye((float)sin(currentTime * 0.5) * 2, 1.0, (float)cos(currentTime * 0.5) * 2 + 0.5);
+		vmath::vec3 center(0.0, 0.0, 0.5);
+		vmath::vec3 up(0.0, 1.0, 0.0);
 		vmath::mat4 vm = vmath::lookat(eye, center, up);
-		GLint viewMatLocation;
-
 		// 프로젝션 메트릭스를 위한 작업
 		// 세로 화각=50도, 화면 비=가로/세로, Near, Far
 		vmath::mat4 pm = vmath::perspective(50.0f, (float)(info.windowWidth) / (float)(info.windowHeight), 0.1f, 1000.0f);
-		GLint projMatLocation;
 
 
 		// -------------------- 배경 그리기 = rendering_program1 + VAO[0](VBO[0], EBO[0]) + texture_bg[3] ------------------------
 		// ============================================ 프로그램 객체 사용 ============================================== //
 		glUseProgram(rendering_program1);
+
+		// 뷰 메트릭스
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program1, "viewMat"), 1, GL_FALSE, vm);
+		// 프로젝션 메트릭스
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program1, "projMat"), 1, GL_FALSE, pm);
 
 		// ================================================ VAO 바인드 ================================================= //
 		glBindVertexArray(VAO[0]);
@@ -429,22 +437,20 @@ public:
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(i * 6 * sizeof(GLuint)));
 		}
 
-		// 이동 메트릭스
-		transMatLocation = glGetUniformLocation(rendering_program1, "transMat");
-		glUniformMatrix4fv(transMatLocation, 1, GL_FALSE, tm);
-		// 뷰 메트릭스
-		viewMatLocation = glGetUniformLocation(rendering_program1, "viewMat");
-		glUniformMatrix4fv(viewMatLocation, 1, GL_FALSE, vm);
-		// 프로젝션 메트릭스
-		projMatLocation = glGetUniformLocation(rendering_program1, "projMat");
-		glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, pm);
-	
-
 
 
 		// ----------------------- 모래성 (벽) 그리기 = rendering_program2 + VAO[1](VBO[1], EBO[1]) + texture_wall[2] --------------------------------
 		// ============================================ 프로그램 객체 사용 ============================================== //
 		glUseProgram(rendering_program2);
+
+		// 이동 메트릭스
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "transMat"), 1, GL_FALSE, tm1);
+		// 스케일 메트릭스
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "scaleMat"), 1, GL_FALSE, sm1);
+		// 뷰 메트릭스
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "viewMat"), 1, GL_FALSE, vm);
+		// 프로젝션 메트릭스
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "projMat"), 1, GL_FALSE, pm);
 
 		// ================================================ VAO 바인드 ================================================= //
 		glBindVertexArray(VAO[1]);
@@ -462,17 +468,6 @@ public:
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(i * 6 * sizeof(GLuint)));
 		}
 
-		// 이동 메트릭스
-		transMatLocation = glGetUniformLocation(rendering_program2, "transMat");
-		glUniformMatrix4fv(transMatLocation, 1, GL_FALSE, tm);
-		// 뷰 메트릭스
-		viewMatLocation = glGetUniformLocation(rendering_program2, "viewMat");
-		glUniformMatrix4fv(viewMatLocation, 1, GL_FALSE, vm);
-		// 프로젝션 메트릭스
-		projMatLocation = glGetUniformLocation(rendering_program2, "projMat");
-		glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, pm);
-
-
 
 
 		// ------------------------ 모래성 (지붕) 그리기 = rendering_program3 + VAO[2](VBO[2], EBO[2]) + texture_roof --------------------------------
@@ -487,7 +482,7 @@ public:
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture_roof);
 
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "transMat"), 1, GL_FALSE, tm);
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "transMat"), 1, GL_FALSE, tm1);
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "viewMat"), 1, GL_FALSE, vm);
 		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "projMat"), 1, GL_FALSE, pm);
 
