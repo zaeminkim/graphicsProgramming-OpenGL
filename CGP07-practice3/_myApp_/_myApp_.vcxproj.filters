@@ -32,10 +32,10 @@
     <None Include="pyramid_fs.glsl">
       <Filter>소스 파일</Filter>
     </None>
-    <None Include="floor_vs.glsl">
+    <None Include="bg_vs.glsl">
       <Filter>소스 파일</Filter>
     </None>
-    <None Include="floor_fs.glsl">
+    <None Include="bg_fs.glsl">
       <Filter>소스 파일</Filter>
     </None>
     <None Include="README.md" />

@@ -9,7 +9,7 @@ VBO는 데이터당
 
 함수 이름이 gl...() => CPU 코드
 
-vec4, mat4, out, in 키워드 => GLSL 코드
+vec4, mat4, uniform, out, in 키워드 => GLSL 코드
 
 ```
 rendering_program = compile_shader();

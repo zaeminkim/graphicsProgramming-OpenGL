@@ -1,5 +1,4 @@
 #version 430 core                
-// in vec3 vsColor; // 필요없음
 in vec2 vsTexCoord;
 uniform sampler2D texIndex;
 
