@@ -457,58 +457,155 @@ public:
 
 
 
-		// ----------------------- 모래성 (벽) 그리기 = rendering_program2 + VAO[1](VBO[1], EBO[1]) + texture_wall[2] --------------------------------
-		// ============================================ 프로그램 객체 사용 ============================================== //
+
+
+
+
+
+
+
+		// ---------------------------- 3개의 모래성에 적용할 변환 행렬 배열 세팅 -------------------------------- //
+		// ============== 각각의 모래성이 배치될 위치, 회전 각도, 크기를 배열로 미리 선언 ================== //
+		vmath::mat4 tm_castles[3] = {
+			vmath::translate(-0.5f, 0.0f + 0.25f*(1.0f-1.0f), -0.2f),   // 1번 모래성
+			vmath::translate(1.0f, 0.0f + 0.25f*(0.4f-1.0f), 1.2f),     // 2번 모래성
+			vmath::translate(1.0f, 0.0f + 0.25f*(0.6f-1.0f), -1.4f)     // 3번 모래성
+			// Y축 보정값 = 0.25f * (스케일 값 - 1.0f)
+		};
+		vmath::mat4 rm_castles[3] = {
+			vmath::rotate(30.0f, 0.0f, 1.0f, 0.0f),  // 1번 회전
+			vmath::rotate(-25.0f, 0.0f, 1.0f, 0.0f), // 2번 회전
+			vmath::rotate(45.0f, 0.0f, 1.0f, 0.0f)   // 3번 회전
+		};
+		vmath::mat4 sm_castles[3] = {
+			vmath::scale(1.0f, 1.0f, 1.0f),          // 1번: 원본
+			vmath::scale(0.4f, 0.4f, 0.4f),          // 2번: 작게
+			vmath::scale(0.6f, 0.6f, 0.6f)           // 3번: 중간 크기
+		};
+
+
+		// --------------------------- 모래성 (벽) 그리기 --------------------------------
 		glUseProgram(rendering_program2);
-
-		// 이동 메트릭스
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "transMat"), 1, GL_FALSE, tm1);
-		// 회전 메트릭스
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "rotMat"), 1, GL_FALSE, rm1);
-		// 스케일 메트릭스
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "scaleMat"), 1, GL_FALSE, sm1);
-		// 뷰 메트릭스
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "viewMat"), 1, GL_FALSE, vm);
-		// 프로젝션 메트릭스
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "projMat"), 1, GL_FALSE, pm);
-
-		// ================================================ VAO 바인드 ================================================= //
 		glBindVertexArray(VAO[1]);
 
-		// ============================================== 텍스처 바인드 ================================================ //
-		glUniform1i(glGetUniformLocation(rendering_program1, "texIndex"), 0);
+		glUniform1i(glGetUniformLocation(rendering_program2, "texIndex"), 0);
 		glActiveTexture(GL_TEXTURE0);
 
-		// bottom(1), near(0), far(1), right(1), left(1), top(1)
-		int texWlIndex[] = { 1,1,0,1,1,1 };
-		for (int i = 0; i < 6; i++) {
-			// 배열에서 이번 면에 맞는 텍스처 번호를 꺼내어 바인딩
-			glBindTexture(GL_TEXTURE_2D, texture_wall[texWlIndex[i]]);
-			// i가 0일 땐 offset 0, i가 1일 땐 offset 6, i가 2일 땐 offset 12...
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(i * 6 * sizeof(GLuint)));
+		// 카메라(View)와 화면(Proj) 행렬은 3개 모래성 모두 공통이므로 반복문 밖에서 한 번만
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "viewMat"), 1, GL_FALSE, vm);
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "projMat"), 1, GL_FALSE, pm);
+
+		int texWlIndex[] = { 1,1,0,1,1,1 }; // 벽면 텍스처 인덱스
+
+		// 모래성 개수(3개)만큼 반복해서 벽 그리기
+		for (int i = 0; i < 3; i++) {
+			// 이번에 그릴 모래성의 위치, 회전, 크기 행렬을 쉐이더로 전송
+			glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "transMat"), 1, GL_FALSE, tm_castles[i]);
+			glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "rotMat"), 1, GL_FALSE, rm_castles[i]);
+			glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "scaleMat"), 1, GL_FALSE, sm_castles[i]);
+
+			// 6개의 면 그리기
+			for (int i = 0; i < 6; i++) {
+				glBindTexture(GL_TEXTURE_2D, texture_wall[texWlIndex[i]]);
+				glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(i * 6 * sizeof(GLuint)));
+			}
+		}
+
+
+		// --------------------------- 모래성 (지붕) 그리기 --------------------------------
+		glUseProgram(rendering_program3);
+		glBindVertexArray(VAO[2]);
+
+		glUniform1i(glGetUniformLocation(rendering_program3, "texIndex"), 0);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture_roof); // 지붕 텍스처는 1개뿐이므로 미리 꽂아둠
+
+		// 공통 카메라 행렬 전송
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "viewMat"), 1, GL_FALSE, vm);
+		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "projMat"), 1, GL_FALSE, pm);
+
+		// 지붕도 마찬가지로 3번 반복해서 그리기
+		for (int i = 0; i < 3; i++) {
+			// 지붕도 벽과 완전히 동일한 위치, 회전, 크기 행렬을 적용
+			glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "transMat"), 1, GL_FALSE, tm_castles[i]);
+			glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "rotMat"), 1, GL_FALSE, rm_castles[i]);
+			glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "scaleMat"), 1, GL_FALSE, sm_castles[i]);
+
+			// 사각뿔(삼각형 4개 + 사각형 1개 = 인덱스 18개) 한 번에 그리기
+			glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_INT, 0);
 		}
 
 
 
-		// ------------------------ 모래성 (지붕) 그리기 = rendering_program3 + VAO[2](VBO[2], EBO[2]) + texture_roof --------------------------------
-		// ============================================ 프로그램 객체 사용 ============================================== //
-		glUseProgram(rendering_program3);
 
-		// ================================================ VAO 바인드 ================================================= //
-		glBindVertexArray(VAO[2]);
 
-		// ============================================== 텍스처 바인드 ================================================ //
-		glUniform1i(glGetUniformLocation(rendering_program1, "texIndex"), 0);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture_roof);
 
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "transMat"), 1, GL_FALSE, tm1);
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "rotMat"), 1, GL_FALSE, rm1);
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "scaleMat"), 1, GL_FALSE, sm1);
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "viewMat"), 1, GL_FALSE, vm);
-		glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "projMat"), 1, GL_FALSE, pm);
 
-		glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_INT, 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//// ----------------------- 모래성 (벽) 그리기 = rendering_program2 + VAO[1](VBO[1], EBO[1]) + texture_wall[2] --------------------------------
+		//// ============================================ 프로그램 객체 사용 ============================================== //
+		//glUseProgram(rendering_program2);
+
+		//// 이동 메트릭스
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "transMat"), 1, GL_FALSE, tm1);
+		//// 회전 메트릭스
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "rotMat"), 1, GL_FALSE, rm1);
+		//// 스케일 메트릭스
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "scaleMat"), 1, GL_FALSE, sm1);
+		//// 뷰 메트릭스
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "viewMat"), 1, GL_FALSE, vm);
+		//// 프로젝션 메트릭스
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program2, "projMat"), 1, GL_FALSE, pm);
+
+		//// ================================================ VAO 바인드 ================================================= //
+		//glBindVertexArray(VAO[1]);
+
+		//// ============================================== 텍스처 바인드 ================================================ //
+		//glUniform1i(glGetUniformLocation(rendering_program1, "texIndex"), 0);
+		//glActiveTexture(GL_TEXTURE0);
+
+		//// bottom(1), near(0), far(1), right(1), left(1), top(1)
+		//int texWlIndex[] = { 1,1,0,1,1,1 };
+		//for (int i = 0; i < 6; i++) {
+		//	// 배열에서 이번 면에 맞는 텍스처 번호를 꺼내어 바인딩
+		//	glBindTexture(GL_TEXTURE_2D, texture_wall[texWlIndex[i]]);
+		//	// i가 0일 땐 offset 0, i가 1일 땐 offset 6, i가 2일 땐 offset 12...
+		//	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(i * 6 * sizeof(GLuint)));
+		//}
+
+
+
+		//// ------------------------ 모래성 (지붕) 그리기 = rendering_program3 + VAO[2](VBO[2], EBO[2]) + texture_roof --------------------------------
+		//// ============================================ 프로그램 객체 사용 ============================================== //
+		//glUseProgram(rendering_program3);
+
+		//// ================================================ VAO 바인드 ================================================= //
+		//glBindVertexArray(VAO[2]);
+
+		//// ============================================== 텍스처 바인드 ================================================ //
+		//glUniform1i(glGetUniformLocation(rendering_program1, "texIndex"), 0);
+		//glActiveTexture(GL_TEXTURE0);
+		//glBindTexture(GL_TEXTURE_2D, texture_roof);
+
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "transMat"), 1, GL_FALSE, tm1);
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "rotMat"), 1, GL_FALSE, rm1);
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "scaleMat"), 1, GL_FALSE, sm1);
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "viewMat"), 1, GL_FALSE, vm);
+		//glUniformMatrix4fv(glGetUniformLocation(rendering_program3, "projMat"), 1, GL_FALSE, pm);
+
+		//glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_INT, 0);
 	}
 
 private:
