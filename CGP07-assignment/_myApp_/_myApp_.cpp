@@ -328,7 +328,7 @@ public:
 		GLint rotMatLocation;
 
 		// 이동 메트릭스를 위한 작업
-		vmath::mat4 tm = vmath::translate((float)sin(currentTime), 0.0f, float(cos(currentTime)));
+		vmath::mat4 tm = vmath::translate((float)sin(currentTime), 0.0f, (float)(cos(currentTime)));
 		GLint transMatLocation;
 
 		// 뷰 메트릭스를 위한 작업
@@ -410,7 +410,7 @@ public:
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, texture[6]);
 
-		// 2. 각 면(0~5번)에 대응하는 숫자 텍스처의 인덱스를 배열로 매핑
+		// 2. 각 면에 대응하는 숫자 텍스처의 인덱스(0~6)를 배열로 매핑
 		// 순서: near(0), far(5), right(1), left(4), top(2), bottom(3)
 		int faceTextures[] = { 0, 5, 1, 4, 2, 3 };
 

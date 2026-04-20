@@ -18,10 +18,16 @@ void main(void)
 	vec2 waterTex = vsTexCoord;
 	//waterTex.x += sin(time * 3.0) * 0.015;
 	waterTex.y += time * 0.2;
+	// 물 텍스처 좌표를 새롭게 초기화
 	vec4 tex2 = texture(texIndex2, waterTex);
 
+	// 조건에 따라 렌더할 텍스처 선택하기
+	// 두 텍스처를 동시에 바인드 해놓고 조건에 따라 골라서 출력하는 방식
 	if (texBottom == 1) {
+		//fragColor = tex2;
+
 		// sin()을 이용해 물줄기 중심선이 휘어지게 변형
+		// 현재 픽셀의 높이(y)를 기준으로, 이 높이에서의 강물 중심 x좌표를 계산
 		// y좌표에 따라 x 중심선이 좌우로 흔들림
 		float waterCenter = 0.5 + sin(vsTexCoord.y * 4.0) * 0.1;
 
@@ -36,5 +42,20 @@ void main(void)
 	else {
 		fragColor = tex1;
 	}
-	
+
+
+	// 4차 수정본 (물이 휘어지지 않음)
+//	if (texBottom == 1) {
+//        // x좌표가 0.4 ~ 0.6 사이인 중앙 부분만 강물 텍스처 출력
+//        if (vsTexCoord.x > 0.4 && vsTexCoord.x < 0.6) {
+//            fragColor = tex2;
+//        }
+//        else {
+//            fragColor = tex1;
+//        }
+//    }
+//    else {
+//        // 바닥이 아니면 무조건 모래/하늘 텍스처 출력
+//        fragColor = tex1;
+//    }
 }                   
