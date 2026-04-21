@@ -1,7 +1,7 @@
 #version 430 core                 
 
 layout (location = 0) in vec3 pos;   
-layout (location = 2) in vec2 texCoord; // 텍스처 좌표
+layout (location = 1) in vec2 texCoord; // 텍스처 좌표
 
 // 메트릭스 uniform 변수로 선언
 uniform mat4 transMat;

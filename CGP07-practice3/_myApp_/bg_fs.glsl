@@ -3,7 +3,7 @@
 in vec2 vsTexCoord;
 in vec3 vsColor;
 
-uniform sampler2D texIndex; // sand
+uniform sampler2D texIndex; // sand, sky
 uniform sampler2D texIndex2; // water
 uniform int texBottom; // bottom만 선택하기 위한 변수, 1 => bottom, 0 => bottom 아님
 uniform float time; // currentTime
@@ -44,7 +44,7 @@ void main(void)
 	}
 
 
-	// 4차 수정본 (물이 휘어지지 않음)
+	// 4차 수정본 (물이 휘어지지 않은 버전)
 //	if (texBottom == 1) {
 //        // x좌표가 0.4 ~ 0.6 사이인 중앙 부분만 강물 텍스처 출력
 //        if (vsTexCoord.x > 0.4 && vsTexCoord.x < 0.6) {

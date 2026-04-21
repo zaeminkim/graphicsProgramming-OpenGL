@@ -138,6 +138,8 @@ glUniform1f(location, 0.5f);
 • **함수 이름이 gl로 시작** → C++ (CPU) 코드
 • **vec4, mat4, out, in 같은 키워드 →** GLSL (GPU) 쉐이더 파일 내부 코드
 
+cpp에서 vec4 사용하려면 vmath:: 앞에 붙여야 함
+
 "한 번만 정해두면 되는 데이터"와 "계속 변해야 하는 데이터"의 차이
 1. startup( ) : 준비 단계
 startup( )은 프로그램이 시작될 때 딱 한 번 실행. 
@@ -220,15 +222,15 @@ glBindTexture(GL_TEXTURE_2D, texture);
 
 //이미지 데이터 복사해서 텍스처 만들기
 glTexImage2D(GL_TEXTURE_2D, // 타켓 텍스처
-							0,            // 밈맵 레벨
-							GL_RGB,       // 텍스처 저장할 픽셀 포멧
-							width,        // 가로 해상도
-							height,       // 세로 해상도
-							0,
-							GL_RGB,       // 로드한 이미지 데이터 포멧
-							GL_UNSIGNED_BYTE, // 이미지 데이터 포멧
-							data          // 실제 이미지 데이터
-							);
+			0,            // 밈맵 레벨
+			GL_RGB,       // 텍스처 저장할 픽셀 포멧
+			width,        // 가로 해상도
+			height,       // 세로 해상도
+			0,
+			GL_RGB,       // 로드한 이미지 데이터 포멧
+			GL_UNSIGNED_BYTE, // 이미지 데이터 포멧
+			data          // 실제 이미지 데이터
+			);
 ```
 
 ```
@@ -248,3 +250,43 @@ void main(void) {
 
 glActiveTexture()
 glBindTexture()는 한 쌍으로 작성할 것
+
+## Texture Wrapping
+텍스처 좌표가 (0,0)~(1,0)를 넘어갔을 때, 남는 빈 공간을 어떻게 채울 것인가
+
+```
+GL_REPEAT = 반복
+GL_MIRRORED_REPEAT = 거울상 반복
+GL_CLAMP_TO_EDGE = 모서리 늘리기
+GL_CLAMP_TO_BORDER = 테두리 색상 채우기
+
+glTexParameteri(GL_TEXTURE_2D,     // 타겟 텍스처
+		GL_TEXTURE_WRAP_S, // 설정할 축
+		GL_MIRRORED_REPEAT // Wrapping모드
+);
+								
+// GL_CLAMP_TO_BORDER인 경우,
+// glTexParameterfv()로 보더 색상을 명시해야 함
+float borderColor[] = {1.0f, 1.0f, 0.0f, 1.0f};
+glTexParameterfv(GL_TEXTURE_2D, 
+		GL_TEXTURE_BORDER_COLOR, 
+		bordercolor // 4개의 요소(RGBA)를 가진 float 배열
+);
+```
+
+## Texture Filtering
+실제 렌더링 픽셀과 텍스처 픽셀이 정확히 일치하지 않기 때문
+
+렌더링 오브젝트 크기 > 텍스처 크기 = 가까이 있을 때
+: 텍스처 이미지가 확대됨
+렌더링 오브젝트 크기 < 텍스처 크기 = 멀리 있을 때 
+: 텍스처 이미지가 축소됨
+```
+GL_NEAREST: 가장 가까운 픽셀 값을 그대로 가져옴
+GL_LINEAR: 주변 4개 픽셀을 이용해서 최종 픽셀 값을 계산함
+
+glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+// ( , 확대/축소 동작 설정, Filtering 옵션 지정)
+```
+

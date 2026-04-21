@@ -178,7 +178,7 @@ public:
 
 		for (int i = 0; i < texBgNum; i++) {
 			glBindTexture(GL_TEXTURE_2D, texture_bg[i]);
-
+			// texture_bg[0] = texBgData[0], ...
 			int width, height, nrChannels;
 			unsigned char* data = stbi_load(texBgData[i], &width, &height, &nrChannels, 0);
 
@@ -208,40 +208,42 @@ public:
 
 		GLfloat vertices2[] = {
 			// near
-			-0.25f,  0.25f,  0.25f,  0.0f, 1.0f, // 0 
-			-0.25f, -0.25f,  0.25f,  0.0f, 0.0f, // 1 
-			 0.25f, -0.25f,  0.25f,  1.0f, 0.0f, // 2 
-			 0.25f,  0.25f,  0.25f,  1.0f, 1.0f, // 3 
+			-0.25f,  0.25f,  0.25f,  -0.08f, 1.08f, // 0 
+			-0.25f, -0.25f,  0.25f,  -0.08f, -0.08f, // 1 
+			 0.25f, -0.25f,  0.25f,  1.08f, -0.08f, // 2 
+			 0.25f,  0.25f,  0.25f,  1.08f, 1.08f,  // 3 
 
 			 // far
-			  0.25f,  0.25f, -0.25f,  0.0f, 1.0f, // 4 
-			  0.25f, -0.25f, -0.25f,  0.0f, 0.0f, // 5 
-			 -0.25f, -0.25f, -0.25f,  1.0f, 0.0f, // 6 
-			 -0.25f,  0.25f, -0.25f,  1.0f, 1.0f, // 7 
+			  0.25f,  0.25f, -0.25f, -0.08f, 1.08f,  // 4 
+			  0.25f, -0.25f, -0.25f, -0.08f, -0.08f, // 5 
+			 -0.25f, -0.25f, -0.25f, 1.08f, -0.08f,  // 6 
+			 -0.25f,  0.25f, -0.25f, 1.08f, 1.08f,   // 7 
 
 			 // left
-			 -0.25f,  0.25f, -0.25f,  0.0f, 1.0f, // 8 
-			 -0.25f, -0.25f, -0.25f,  0.0f, 0.0f, // 9 
-			 -0.25f, -0.25f,  0.25f,  1.0f, 0.0f, //10 
-			 -0.25f,  0.25f,  0.25f,  1.0f, 1.0f, //11 
+			 -0.25f,  0.25f, -0.25f, -0.08f, 1.08f,  // 8 
+			 -0.25f, -0.25f, -0.25f, -0.08f, -0.08f, // 9 
+			 -0.25f, -0.25f,  0.25f, 1.08f, -0.08f,  //10 
+			 -0.25f,  0.25f,  0.25f, 1.08f, 1.08f,   //11 
 
 			 // right
-			 0.25f,  0.25f,  0.25f,  0.0f, 1.0f, //12 
-			 0.25f, -0.25f,  0.25f,  0.0f, 0.0f, //13 
-			 0.25f, -0.25f, -0.25f,  1.0f, 0.0f, //14 
-			 0.25f,  0.25f, -0.25f,  1.0f, 1.0f, //15 
+			 0.25f,  0.25f,  0.25f,  -0.08f, 1.08f,  //12 
+			 0.25f, -0.25f,  0.25f,  -0.08f, -0.08f, //13 
+			 0.25f, -0.25f, -0.25f,  1.08f, -0.08f,  //14 
+			 0.25f,  0.25f, -0.25f,  1.08f, 1.08f,   //15 
 
 			 // top
-			 -0.25f,  0.25f, -0.25f,  0.0f, 1.0f, //16 
-			 -0.25f,  0.25f,  0.25f,  0.0f, 0.0f, //17 
-			  0.25f,  0.25f,  0.25f,  1.0f, 0.0f, //18 
-			  0.25f,  0.25f, -0.25f,  1.0f, 1.0f, //19 
+			 -0.25f,  0.25f, -0.25f,  -0.08f, 1.08f,  //16 
+			 -0.25f,  0.25f,  0.25f,  -0.08f, -0.08f, //17 
+			  0.25f,  0.25f,  0.25f,  1.08f, -0.08f,  //18 
+			  0.25f,  0.25f, -0.25f,  1.08f, 1.08f,   //19 
 
 			  // bottom
-			  -0.25f, -0.25f,  0.25f,  0.0f, 1.0f, //20 
-			  -0.25f, -0.25f, -0.25f,  0.0f, 0.0f, //21 
-			  0.25f, -0.25f, -0.25f,  1.0f, 0.0f, //22 
-			  0.25f, -0.25f,  0.25f,  1.0f, 1.0f  //23 
+			  -0.25f, -0.25f,  0.25f, -0.08f, 1.08f, //20 
+			  -0.25f, -0.25f, -0.25f, -0.08f, -0.08f, //21 
+			  0.25f, -0.25f, -0.25f,  1.08f, -0.08f, //22 
+			  0.25f, -0.25f,  0.25f,  1.08f, 1.08f  //23 
+
+			  // 텍스처에 border(0.08) 색깔 추가하기
 		};
 
 		GLuint indices2[] = {
@@ -291,10 +293,13 @@ public:
 			}
 			stbi_image_free(data);
 
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+			vmath::vec4 borderColor = vmath::vec4(0.5, 0.4, 0.3, 1.0);
+			glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
 		}
 		// location = 1 -> texture
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -443,7 +448,7 @@ public:
 		for (int i = 0; i < 6; i++) {
 			// 0번 위치 활성화
 			glActiveTexture(GL_TEXTURE0);
-			// 배열에서 이번 면에 맞는 텍스처 번호를 꺼내어 바인딩
+			// 배열에서 이번 면에 맞는 텍스처를 갈아 끼워서 바인딩
 			glBindTexture(GL_TEXTURE_2D, texture_bg[texBgIndex[i]]);
 
 			if (i == 0) { // bottom일 때
@@ -474,7 +479,7 @@ public:
 			// Y축 보정값 = 0.25f * (스케일 값 - 1.0f)
 		};
 		vmath::mat4 rm_castles[3] = {
-			vmath::rotate(30.0f, 0.0f, 1.0f, 0.0f),  // 1번 회전
+			vmath::rotate(180.0f, 0.0f, 1.0f, 0.0f),  // 1번 회전
 			vmath::rotate(-25.0f, 0.0f, 1.0f, 0.0f), // 2번 회전
 			vmath::rotate(90.0f, 0.0f, 1.0f, 0.0f)   // 3번 회전
 		};
