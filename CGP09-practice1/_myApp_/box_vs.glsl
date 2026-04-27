@@ -1,20 +1,31 @@
-#version 430 core                 
+#version 430 core
   
 layout (location = 0) in vec3 pos;   
-layout (location = 1) in vec2 texCoord;
+layout (location = 1) in vec3 normal;
+layout (location = 2) in vec2 texCoord;
 
-// ¸ŞÆ®¸¯½º uniform º¯¼ö·Î ¼±¾ğ
 uniform mat4 rotMat;
 uniform mat4 transMat;
 uniform mat4 viewMat;
 uniform mat4 projMat;
 
 out vec2 vsTexCoord;
+out vec3 vsNormal; // í”„ë˜ê·¸ë¨¼íŠ¸ë³„ë¡œ ë³´ê°„ì´ ë˜ë„ë¡ í”„ë˜ê·¸ë¨¼íŠ¸ ì‰ì´ë”ë¡œ ë„˜ê¸°ê¸°
+out vec3 vsPos;
 
-void main(void)                    
+void main(void)
 {
-	// ¸ğµ¨ ¸ŞÆ®¸¯½º -> ºä ¸ŞÆ®¸¯½º -> ÇÁ·ÎÁ§¼Ç ¸ŞÆ®¸¯½º ¼ø¼­·Î ¿¬»ê
-	gl_Position = projMat * viewMat * transMat * rotMat * vec4(pos.x, pos.y, pos.z, 1.0);
+    mat4 modelMat = transMat * rotMat;
+    
+    // ì›”ë“œ ì¢Œí‘œê³„ì—ì„œì˜ ì •ì  ìœ„ì¹˜
+    vsPos = vec3(modelMat * vec4(pos, 1.0));
+    // ì›”ë“œê³µê°„ì—ì„œ ë¼ì´íŒ… ê³„ì‚°ì„ í•˜ê¸° ìœ„í•´ ë·°, í”„ë¡œì ì…˜ ë©”íŠ¸ë¦­ìŠ¤ ë³€í™˜ì€ ì ìš© ì•ˆí•¨
+    
+    // Normal Matrix
+    vsNormal = mat3(transpose(inverse(modelMat))) * normal;
 
-	vsTexCoord = texCoord;
-}															
+    // ìµœì¢… í™”ë©´ìƒì˜ ìœ„ì¹˜ ê³„ì‚°
+    gl_Position = projMat * viewMat * vec4(vsPos, 1.0);
+
+    vsTexCoord = texCoord;
+}

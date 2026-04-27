@@ -46,40 +46,37 @@ public:
 		glBindVertexArray(VAO); // 정육면체
 
 		// 버텍스와 텍스처 버텍스 배열 선언
-		GLfloat vertices[] = {
-			// 버텍스 4개 = 정육면체 한 면
-			// 정육면체 뒷면은 다 똑같은데 시계방향으로 버텍스 정의하면 됨
-
-			// near
-			-0.25f, 0.25f, 0.25f,   0.0f, 1.0f,   // 인덱스 0
-			-0.25f, -0.25f, 0.25f,  0.0f, 0.0f,   // 인덱스 1
-			0.25f, -0.25f, 0.25f,   1.0f, 0.0f,   // 인덱스 2
-			0.25f, 0.25f, 0.25f,    1.0f, 1.0f,   // 인덱스 3
-			// far
-			0.25f, 0.25f, -0.25f,  0.0f, 1.0f,    // 인덱스 4
-			0.25f, -0.25f, -0.25f, 0.0f, 0.0f,    // 인덱스 5
-			-0.25f, -0.25f, -0.25f,  1.0f, 0.0f,  // 인덱스 6
-			-0.25f, 0.25f, -0.25f,   1.0f, 1.0f,  // 인덱스 7
-			// right
-			0.25f, 0.25f, 0.25f,  0.0f, 1.0f,     // 인덱스 8
-			0.25f, -0.25f, 0.25f, 0.0f, 0.0f,     // 인덱스 9
-			0.25f, -0.25f, -0.25f,  1.0f, 0.0f,   // 인덱스 10
-			0.25f, 0.25f, -0.25f,   1.0f, 1.0f,   // 인덱스 11
-			// left
-			-0.25f, 0.25f, -0.25f,   0.0f, 1.0f,  // 인덱스 12
-			-0.25f, -0.25f, -0.25f,  0.0f, 0.0f,  // 인덱스 13
-			-0.25f, -0.25f, 0.25f,   1.0f, 0.0f,  // 인덱스 14
-			-0.25f, 0.25f, 0.25f,    1.0f, 1.0f,  // 인덱스 15
-			// top
-			-0.25f, 0.25f, -0.25f,   0.0f, 1.0f,  // 인덱스 16
-			-0.25f, 0.25f, 0.25f,  0.0f, 0.0f,    // 인덱스 17
-			0.25f, 0.25f, 0.25f,   1.0f, 0.0f,    // 인덱스 18
-			0.25f, 0.25f, -0.25f,    1.0f, 1.0f,  // 인덱스 19
-			// bottom
-			-0.25f, -0.25f, -0.25f,   0.0f, 1.0f, // 인덱스 20
-			0.25f, -0.25f, -0.25f,  0.0f, 0.0f,   // 인덱스 21
-			0.25f, -0.25f, 0.25f,   1.0f, 0.0f,   // 인덱스 22
-			-0.25f, -0.25f, 0.25f,    1.0f, 1.0f, // 인덱스 23
+				GLfloat vertices[] = {
+			// near (normal: 0, 0, 1)
+			-0.25f, 0.25f, 0.25f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,
+			-0.25f, -0.25f, 0.25f,  0.0f, 0.0f, 1.0f,   0.0f, 0.0f,
+			0.25f, -0.25f, 0.25f,   0.0f, 0.0f, 1.0f,   1.0f, 0.0f,
+			0.25f, 0.25f, 0.25f,    0.0f, 0.0f, 1.0f,   1.0f, 1.0f,
+			// far (normal: 0, 0, -1)
+			0.25f, 0.25f, -0.25f,   0.0f, 0.0f, -1.0f,  0.0f, 1.0f,
+			0.25f, -0.25f, -0.25f,  0.0f, 0.0f, -1.0f,  0.0f, 0.0f,
+			-0.25f, -0.25f, -0.25f, 0.0f, 0.0f, -1.0f,  1.0f, 0.0f,
+			-0.25f, 0.25f, -0.25f,  0.0f, 0.0f, -1.0f,  1.0f, 1.0f,
+			// right (normal: 1, 0, 0)
+			0.25f, 0.25f, 0.25f,    1.0f, 0.0f, 0.0f,   0.0f, 1.0f,
+			0.25f, -0.25f, 0.25f,   1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+			0.25f, -0.25f, -0.25f,  1.0f, 0.0f, 0.0f,   1.0f, 0.0f,
+			0.25f, 0.25f, -0.25f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,
+			// left (normal: -1, 0, 0)
+			-0.25f, 0.25f, -0.25f,  -1.0f, 0.0f, 0.0f,  0.0f, 1.0f,
+			-0.25f, -0.25f, -0.25f, -1.0f, 0.0f, 0.0f,  0.0f, 0.0f,
+			-0.25f, -0.25f, 0.25f,  -1.0f, 0.0f, 0.0f,  1.0f, 0.0f,
+			-0.25f, 0.25f, 0.25f,   -1.0f, 0.0f, 0.0f,  1.0f, 1.0f,
+			// top (normal: 0, 1, 0)
+			-0.25f, 0.25f, -0.25f,  0.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+			-0.25f, 0.25f, 0.25f,   0.0f, 1.0f, 0.0f,   0.0f, 0.0f,
+			0.25f, 0.25f, 0.25f,    0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
+			0.25f, 0.25f, -0.25f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,
+			// bottom (normal: 0, -1, 0)
+			-0.25f, -0.25f, -0.25f, 0.0f, -1.0f, 0.0f,  0.0f, 1.0f,
+			0.25f, -0.25f, -0.25f,  0.0f, -1.0f, 0.0f,  0.0f, 0.0f,
+			0.25f, -0.25f, 0.25f,   0.0f, -1.0f, 0.0f,  1.0f, 0.0f,
+			-0.25f, -0.25f, 0.25f,  0.0f, -1.0f, 0.0f,  1.0f, 1.0f,
 		};
 
 		// 버텍스 순서: 반시계 방향
@@ -109,11 +106,14 @@ public:
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 		// VBO를 VAO의 Vertex Attributes로 연결
 		// location = 0 -> pos
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
-		// location = 1 -> texture
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+		// location = 1 -> normal
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
+		// location = 2 -> texture
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		glEnableVertexAttribArray(2);
 
 		// ========================================= EBO 바인드 ========================================== //
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -148,161 +148,6 @@ public:
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		}
 		// =========================================================================================================== //
-
-
-
-		//// ====================================== texture[0] 바인드 ===================================== //
-		//glBindTexture(GL_TEXTURE_2D, texture[0]);
-
-		//// 이미지의 픽셀 데이터를 배열로 저장
-		//int width0, height0, nrChannels0;
-		//unsigned char* data0 = stbi_load("side1.jpg", &width0, &height0, &nrChannels0, 0);
-
-		//// 이미지 데이터를 복사해서 텍스처 만들기
-		//if (data0) {
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width0, height0, 0, GL_RGB, GL_UNSIGNED_BYTE, data0);
-		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		//}
-		//// 텍스처 만들고 난 후 반드시 메모리 해제
-		//stbi_image_free(data0);
-
-		//// 텍스처 래핑, 샘플링 설정
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-		//// ====================================== texture[1] 바인드 ===================================== //
-		//glBindTexture(GL_TEXTURE_2D, texture[1]);
-
-		//// 이미지의 픽셀 데이터를 배열로 저장
-		//int width1, height1, nrChannels1;
-		//unsigned char* data1 = stbi_load("side2.jpg", &width1, &height1, &nrChannels1, 0);
-
-		//// 이미지 데이터를 복사해서 텍스처 만들기
-		//if (data1) {
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width1, height1, 0, GL_RGB, GL_UNSIGNED_BYTE, data1);
-		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		//}
-		//// 텍스처 만들고 난 후 반드시 메모리 해제
-		//stbi_image_free(data1);
-
-		//// 텍스처 래핑, 샘플링 설정
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-		//// ====================================== texture[2] 바인드 ===================================== //
-		//glBindTexture(GL_TEXTURE_2D, texture[2]);
-
-		//// 이미지의 픽셀 데이터를 배열로 저장
-		//int width2, height2, nrChannels2;
-		//unsigned char* data2 = stbi_load("side3.jpg", &width2, &height2, &nrChannels2, 0);
-
-		//// 이미지 데이터를 복사해서 텍스처 만들기
-		//if (data2) {
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width2, height2, 0, GL_RGB, GL_UNSIGNED_BYTE, data2);
-		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		//}
-		//// 텍스처 만들고 난 후 반드시 메모리 해제
-		//stbi_image_free(data2);
-
-		//// 텍스처 래핑, 샘플링 설정
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-		//// ====================================== texture[3] 바인드 ===================================== //
-		//glBindTexture(GL_TEXTURE_2D, texture[3]);
-
-		//// 이미지의 픽셀 데이터를 배열로 저장
-		//int width3, height3, nrChannels3;
-		//unsigned char* data3 = stbi_load("side4.jpg", &width3, &height3, &nrChannels3, 0);
-
-		//// 이미지 데이터를 복사해서 텍스처 만들기
-		//if (data3) {
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width3, height3, 0, GL_RGB, GL_UNSIGNED_BYTE, data3);
-		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		//}
-		//// 텍스처 만들고 난 후 반드시 메모리 해제
-		//stbi_image_free(data3);
-
-		//// 텍스처 래핑, 샘플링 설정
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-		//// ====================================== texture[4] 바인드 ===================================== //
-		//glBindTexture(GL_TEXTURE_2D, texture[4]);
-
-		//// 이미지의 픽셀 데이터를 배열로 저장
-		//int width4, height4, nrChannels4;
-		//unsigned char* data4 = stbi_load("side5.jpg", &width4, &height4, &nrChannels4, 0);
-
-		//// 이미지 데이터를 복사해서 텍스처 만들기
-		//if (data4) {
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width4, height4, 0, GL_RGB, GL_UNSIGNED_BYTE, data4);
-		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		//}
-		//// 텍스처 만들고 난 후 반드시 메모리 해제
-		//stbi_image_free(data4);
-
-		//// 텍스처 래핑, 샘플링 설정
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-		//// ====================================== texture[5] 바인드 ===================================== //
-		//glBindTexture(GL_TEXTURE_2D, texture[5]);
-
-		//// 이미지의 픽셀 데이터를 배열로 저장
-		//int width5, height5, nrChannels5;
-		//unsigned char* data5 = stbi_load("side6.jpg", &width5, &height5, &nrChannels5, 0);
-
-		//// 이미지 데이터를 복사해서 텍스처 만들기
-		//if (data5) {
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width5, height5, 0, GL_RGB, GL_UNSIGNED_BYTE, data5);
-		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		//}
-		//// 텍스처 만들고 난 후 반드시 메모리 해제
-		//stbi_image_free(data5);
-
-		//// 텍스처 래핑, 샘플링 설정
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-		//// ====================================== texture[6] 바인드 ===================================== //
-		//glBindTexture(GL_TEXTURE_2D, texture[6]);
-
-		//// 이미지의 픽셀 데이터를 배열로 저장
-		//int width, height, nrChannels;
-		//unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
-
-		//// 이미지 데이터를 복사해서 텍스처 만들기
-		//if (data) {
-		//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-		//	glGenerateMipmap(GL_TEXTURE_2D); // 밉맵 만들기
-		//}
-		//// 텍스처 만들고 난 후 반드시 메모리 해제
-		//stbi_image_free(data);
-
-		//// 텍스처 래핑, 샘플링 설정
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	}
 
 	virtual void shutdown()
@@ -364,45 +209,19 @@ public:
 		projMatLocation = glGetUniformLocation(rendering_program, "projMat");
 		glUniformMatrix4fv(projMatLocation, 1, GL_FALSE, pm);
 
+		vmath::vec3 lightColor(1.0f, 1.0f, 1.0f);
+		vmath::vec3 boxColor(1.0f, 0.5f, 0.31f);
+		vmath::vec3 lightPos(1.2f, 1.0f, 2.0f);
+		vmath::vec3 viewPos = eye;
+
+		glUniform3fv(glGetUniformLocation(rendering_program, "lightColor"), 1, lightColor);
+		glUniform3fv(glGetUniformLocation(rendering_program, "objectColor"), 1, boxColor);
+		glUniform3fv(glGetUniformLocation(rendering_program, "lightPos"), 1, lightPos);
+		glUniform3fv(glGetUniformLocation(rendering_program, "viewPos"), 1, viewPos);
+
 
 		// ========================================= VAO 바인드 ============================================= //
 		glBindVertexArray(VAO);
-
-		//// ======================================== texture 바인드 ======================================= //
-		//glUniform1i(glGetUniformLocation(rendering_program, "texIndex1"), 0);
-		//glActiveTexture(GL_TEXTURE0); // 0번 위치 활성화 후 각 텍스처들 바인드
-
-		//// 면1 near (indices 0..5) "숫자 1"
-		//glBindTexture(GL_TEXTURE_2D, texture[0]);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(0 * sizeof(GLuint)));
-
-		//// 면2 far (indices 6..11) "숫자 6"
-		//glBindTexture(GL_TEXTURE_2D, texture[5]);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(6 * sizeof(GLuint)));
-
-		//// 면3 right (indices 12..17) "숫자 2"
-		//glBindTexture(GL_TEXTURE_2D, texture[1]);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(12 * sizeof(GLuint)));
-
-		//// 면4 left (indices 18..23) "숫자 5"
-		//glBindTexture(GL_TEXTURE_2D, texture[4]);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(18 * sizeof(GLuint)));
-
-		//// 면5 top (indices 24..29) "숫자 3"
-		//glBindTexture(GL_TEXTURE_2D, texture[2]);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(24 * sizeof(GLuint)));
-
-		//// 면6 bottom (indices 30..35) "숫자 4"
-		//glBindTexture(GL_TEXTURE_2D, texture[3]);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(30 * sizeof(GLuint)));
-
-		//// ======================================== texture 바인드 ======================================= //
-		//glUniform1i(glGetUniformLocation(rendering_program, "texIndex2"), 1);
-		//glActiveTexture(GL_TEXTURE1);
-
-		//glBindTexture(GL_TEXTURE_2D, texture[6]);
-		//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
-
 
 		// ================================ texture 바인드 코드 수정 ========================================= //
 		// 1. 공통으로 쓰이는 배경 텍스처(나무 상자)를 먼저
