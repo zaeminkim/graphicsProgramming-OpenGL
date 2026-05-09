@@ -203,11 +203,11 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glEnable(GL_DEPTH_TEST);
 
-		float angle = currentTime * 100;
+		float angle = currentTime * 70;
 
 		// 뷰 메트릭스를 위한 작업
 		float radius = 2.0f; // 멀리서 바라보기
-		vmath::vec3 eye(radius * (float)cos(currentTime * 0.5f), 0.6f, radius * (float)sin(currentTime * 0.5f));   // eye=카메라 위치, 위에서 내려다보기 -> y축 조절, 비스듬히 보기 -> x, z축 조절
+		vmath::vec3 eye(radius * (float)cos(currentTime * 0.3f), 0.7f, radius * (float)sin(currentTime * 0.3f));   // eye=카메라 위치, 위에서 내려다보기 -> y축 조절, 비스듬히 보기 -> x, z축 조절
 		vmath::vec3 center(0.0, 0.0, 0.0);               // center=바라보는 초점
 		vmath::vec3 up(0.0, 1.0, 0.0);                   // up=카메라의 정수리, 보통 (0,1,0)으로 고정
 		vmath::mat4 vm = vmath::lookat(eye, center, up);
