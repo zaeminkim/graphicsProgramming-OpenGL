@@ -46,7 +46,7 @@ public:
 		glBindVertexArray(VAO); // 정육면체
 
 		// 버텍스와 텍스처 버텍스 배열 선언
-				GLfloat vertices[] = {
+		GLfloat vertices[] = {
 			// near (normal: 0, 0, 1)
 			-0.25f, 0.25f, 0.25f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,
 			-0.25f, -0.25f, 0.25f,  0.0f, 0.0f, 1.0f,   0.0f, 0.0f,
