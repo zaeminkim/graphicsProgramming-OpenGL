@@ -129,20 +129,25 @@
     <ClCompile Include="_myApp_.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stb_image.h" />
+    <None Include="box_fs.glsl" />
+    <None Include="box_vs.glsl" />
+    <None Include="ground_fs.glsl" />
+    <None Include="ground_vs.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="basic_lighting_fs.glsl" />
-    <None Include="basic_lighting_vs.glsl" />
-    <None Include="basic_texturing_fs.glsl" />
-    <None Include="basic_texturing_vs.glsl" />
-    <None Include="simple_color_fs.glsl" />
-    <None Include="simple_color_vs.glsl" />
-  </ItemGroup>
-  <ItemGroup>
+    <Image Include="container.jpg" />
     <Image Include="container2.png" />
     <Image Include="container2_specular.png" />
+    <Image Include="side1.jpg" />
+    <Image Include="side2.jpg" />
+    <Image Include="side3.jpg" />
+    <Image Include="side4.jpg" />
+    <Image Include="side5.jpg" />
+    <Image Include="side6.jpg" />
     <Image Include="wall.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

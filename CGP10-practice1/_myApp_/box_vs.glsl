@@ -2,6 +2,7 @@
   
 layout (location = 0) in vec3 pos;   
 layout (location = 1) in vec3 normal;
+layout (location = 2) in vec2 texCoord;
 
 uniform mat4 rotMat;
 uniform mat4 transMat;
@@ -10,6 +11,7 @@ uniform mat4 projMat;
 
 out vec3 vsNormal; // 프래그먼트별로 보간이 되도록 프래그먼트 쉐이더로 넘기기
 out vec3 vsPos;
+out vec2 vsTexCoord; // 프래그먼트별로 보간이 되도록 프래그먼트 쉐이더로 넘기기
 
 void main(void)
 {
@@ -21,6 +23,8 @@ void main(void)
     
     // Normal Matrix
     vsNormal = mat3(transpose(inverse(modelMat))) * normal;
+
+    vsTexCoord = texCoord;
 
     // 최종 화면상의 위치 계산
     gl_Position = projMat * viewMat * vec4(vsPos, 1.0);

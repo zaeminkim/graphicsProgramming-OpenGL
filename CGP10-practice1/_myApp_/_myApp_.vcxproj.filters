@@ -20,39 +20,54 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stb_image.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="basic_lighting_fs.glsl">
+    <None Include="box_vs.glsl">
       <Filter>소스 파일</Filter>
     </None>
-    <None Include="basic_lighting_vs.glsl">
+    <None Include="box_fs.glsl">
       <Filter>소스 파일</Filter>
     </None>
-    <None Include="basic_texturing_fs.glsl">
+    <None Include="ground_vs.glsl">
       <Filter>소스 파일</Filter>
     </None>
-    <None Include="basic_texturing_vs.glsl">
-      <Filter>소스 파일</Filter>
-    </None>
-    <None Include="simple_color_fs.glsl">
-      <Filter>소스 파일</Filter>
-    </None>
-    <None Include="simple_color_vs.glsl">
+    <None Include="ground_fs.glsl">
       <Filter>소스 파일</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="container.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
     <Image Include="container2.png">
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="container2_specular.png">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="side1.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side2.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side3.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side4.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side5.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="side6.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
     <Image Include="wall.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stb_image.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
