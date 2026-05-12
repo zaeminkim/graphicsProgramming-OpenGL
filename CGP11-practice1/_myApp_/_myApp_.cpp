@@ -269,6 +269,7 @@ public:
 		glDeleteVertexArrays(3, VAOs);
 		glDeleteProgram(shader_programs[0]);
 		glDeleteProgram(shader_programs[1]);
+		glDeleteProgram(shader_programs[2]);
 	}
 
 	// 렌더링 virtual 함수를 작성해서 오버라이딩한다.
@@ -328,11 +329,32 @@ public:
 		glUniformMatrix4fv(glGetUniformLocation(shader_programs[1], "view"), 1, GL_FALSE, lookAt);
 		glUniformMatrix4fv(glGetUniformLocation(shader_programs[1], "model"), 1, GL_FALSE, rotateM);
 
-		glUniform3fv(glGetUniformLocation(shader_programs[1], "light.ambient"), 1, lightAmbient);
-		glUniform3fv(glGetUniformLocation(shader_programs[1], "light.diffuse"), 1, lightDiffuse);
-		glUniform3fv(glGetUniformLocation(shader_programs[1], "light.specular"), 1, lightSpecular);
-		glUniform3fv(glGetUniformLocation(shader_programs[1], "light.position"), 1, lightPosition);
+		//1 dirLight
+		//glUniform3fv(glGetUniformLocation(shader_programs[1], "dirLight.ambient"), 1, lightAmbient);
+		//glUniform3fv(glGetUniformLocation(shader_programs[1], "dirLight.diffuse"), 1, lightDiffuse);
+		//glUniform3fv(glGetUniformLocation(shader_programs[1], "dirLight.specular"), 1, lightSpecular);
+		//glUniform3fv(glGetUniformLocation(shader_programs[1], "viewPos"), 1, viewPos);
+		//glUniform3f(glGetUniformLocation(shader_programs[1], "dirLight.direction"), -0.0f, -1.0f, -0.0f);
+
+		//2 pointLights[0]
+		//glUniform3fv(glGetUniformLocation(shader_programs[1], "pointLights[0].ambient"), 1, lightAmbient);
+		//glUniform3fv(glGetUniformLocation(shader_programs[1], "pointLights[0].diffuse"), 1, lightDiffuse);
+		//glUniform3fv(glGetUniformLocation(shader_programs[1], "pointLights[0].specular"), 1, lightSpecular);
+		//glUniform3fv(glGetUniformLocation(shader_programs[1], "viewPos"), 1, viewPos);
+		//glUniform3fv(glGetUniformLocation(shader_programs[1], "pointLights[0].position"), 1, lightPosition);
+		//glUniform1f(glGetUniformLocation(shader_programs[1], "pointLights[0].c1"), 0.7f);
+		//glUniform1f(glGetUniformLocation(shader_programs[1], "pointLights[0].c2"), 1.8f);
+
+		//3 spotLight
+		glUniform3fv(glGetUniformLocation(shader_programs[1], "spotLight.ambient"), 1, lightAmbient);
+		glUniform3fv(glGetUniformLocation(shader_programs[1], "spotLight.diffuse"), 1, lightDiffuse);
+		glUniform3fv(glGetUniformLocation(shader_programs[1], "spotLight.specular"), 1, lightSpecular);
 		glUniform3fv(glGetUniformLocation(shader_programs[1], "viewPos"), 1, viewPos);
+		glUniform3fv(glGetUniformLocation(shader_programs[1], "spotLight.position"), 1, eye);
+		glUniform3fv(glGetUniformLocation(shader_programs[1], "spotLight.direction"), 1, center - eye);
+		glUniform1f(glGetUniformLocation(shader_programs[1], "spotLight.cutOff"), (float)cos(vmath::radians(12.5)));
+		glUniform1f(glGetUniformLocation(shader_programs[1], "spotLight.outerCutOff"), (float)cos(vmath::radians(15.5)));
+
 
 		glBindVertexArray(VAOs[1]);
 
@@ -368,8 +390,6 @@ public:
 		vmath::mat4 transform = vmath::translate(lightPosition) *
 			vmath::rotate(angle * 0.5f, 0.0f, 1.0f, 0.0f) *
 			vmath::scale(scaleFactor, scaleFactor, scaleFactor);
-
-
 
 		glUseProgram(shader_programs[2]);
 
