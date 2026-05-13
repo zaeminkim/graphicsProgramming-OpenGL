@@ -201,7 +201,8 @@ public:
 		//box.setupMesh(36, box_pos, box_tex, box_norm); // (개수, 배열, 배열, 배열)
 		//box.loadDiffuseMap("container2.png");
 		//box.loadSpecularMap("container2_specular.png");
-		box.loadModel("fatTitan.obj");
+		box.loadOBJ("fatTitan.obj");
+		//box.loadDiffuseMap("5_hair_1_0_0_baseColor.png");
 
 		// 박스 10개 포지션 설정
 		boxPositions.push_back(vmath::vec3(0.0f, 0.0f, 0.0f));
@@ -266,7 +267,7 @@ public:
 		// 카메라 매트릭스 계산
 		float distance = 2.f;
 		vmath::vec3 eye((float)cos(currentTime * 0.1f) * distance, 1.0, (float)sin(currentTime * 0.1f) * distance);
-		vmath::vec3 center(0.0, 0.5, 0.0);
+		vmath::vec3 center(0.0, 0.0, 0.0);
 		vmath::vec3 up(0.0, 1.0, 0.0);
 		vmath::mat4 lookAt = vmath::lookat(eye, center, up);
 		float fov = 50.f;
