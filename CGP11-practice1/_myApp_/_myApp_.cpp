@@ -58,10 +58,10 @@ public:
 	// 애플리케이션 초기화 수행한다.
 	virtual void startup()
 	{
-		// 쉐이더 프로그램 컴파일 및 연결 -> 상황에 따라 프로그램 교체해서 사용
-		shader_programs[0] = compile_shader("basic_texturing_vs.glsl", "basic_texturing_fs.glsl"); // 텍스처 입히기
-		shader_programs[1] = compile_shader("basic_lighting_vs.glsl", "basic_lighting_fs.glsl");   // Phong lighting model 연산
-		shader_programs[2] = compile_shader("simple_color_vs.glsl", "simple_color_fs.glsl");       // 색상 칠하기
+		// 쉐이더 프로그램 컴파일 및 연결 -> 상황에 따라 프로그램 교체해서 사용 (쉐이더 프로그램을 역할에 따라 구분)
+		shader_programs[0] = compile_shader("basic_texturing_vs.glsl", "basic_texturing_fs.glsl"); // 텍스처 입히기 (코드에선 바닥)
+		shader_programs[1] = compile_shader("basic_lighting_vs.glsl", "basic_lighting_fs.glsl");   // Phong lighting model 연산 (코드에선 박스)
+		shader_programs[2] = compile_shader("simple_color_vs.glsl", "simple_color_fs.glsl");       // 색상 칠하기 (코드에선 광원 피라미드)
 
 		// VAO, VBO, EBO, texture 생성
 		glGenVertexArrays(3, VAOs);
@@ -328,8 +328,12 @@ public:
 		vmath::mat4 transM = vmath::translate(vmath::vec3((float)sin(currentTime * 0.5f), 0.0f, (float)cos(currentTime * 0.5f) * 0.7f));
 		float angle = currentTime * 100;
 		vmath::mat4 rotateM = vmath::rotate(angle, 0.0f, 1.0f, 0.0f);
-
+		
 		glUseProgram(shader_programs[1]);
+
+		//// 만약 다른 프로그램을 사용한다면, 
+		//glUseProgram(shader_programs[2]);
+		//glUniform3f(glGetUniformLocation(shader_programs[2], "color"), 1.0f, 0.0f, 0.0f);
 
 		glUniformMatrix4fv(glGetUniformLocation(shader_programs[1], "projection"), 1, GL_FALSE, projM);
 		glUniformMatrix4fv(glGetUniformLocation(shader_programs[1], "view"), 1, GL_FALSE, lookAt);
