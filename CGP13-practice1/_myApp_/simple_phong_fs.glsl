@@ -12,6 +12,7 @@ struct Material {
 	vec3 defaultAmbient;
 	vec3 defaultDiffuse;
 	vec3 defaultSpecular;
+
 	int useDiffuseMap;
 	int useSpecularMap;
 }; 
